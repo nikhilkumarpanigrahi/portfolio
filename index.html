@@ -3,552 +3,742 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikhil Kumar Panigrahi — Software Engineer Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Nikhil Kumar Panigrahi — Backend Engineer</title>
+    <meta name="description" content="Backend Developer Intern at WhatBytes. CSE student at KL University (CGPA 9.7). Building RAG pipelines, REST APIs & scalable systems.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-logo">
-                <img src="logo.svg" alt="NK Logo" class="logo-img logo-img-preloader">
+
+<!-- Scroll Progress Bar -->
+<div id="scrollBar" class="scroll-bar"></div>
+
+<!-- Custom Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Preloader -->
+<div id="preloader" class="preloader">
+    <div class="preloader-inner">
+        <div class="pl-terminal">
+            <div class="pl-bar">
+                <span class="pl-dot r"></span>
+                <span class="pl-dot y"></span>
+                <span class="pl-dot g"></span>
+                <span class="pl-bar-title">terminal</span>
             </div>
-            <div class="preloader-bar">
-                <div class="preloader-progress"></div>
+            <div class="pl-lines" id="plLines"></div>
+            <div class="pl-active-line">
+                <span class="pl-prompt">▶</span>
+                <span class="pl-typing" id="plTyping"></span>
+                <span class="pl-cur">█</span>
             </div>
-            <span class="preloader-text">Loading Portfolio...</span>
         </div>
     </div>
+</div>
 
-    <!-- Cursor Glow -->
-    <div class="cursor-glow" id="cursorGlow"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
+<!-- Toast Notification -->
+<div id="toast" class="toast" role="alert">
+    <i class="toast-icon fas fa-check-circle"></i>
+    <span id="toastMsg"></span>
+</div>
 
-    <!-- Particle Canvas -->
-    <canvas id="particleCanvas"></canvas>
+<!-- Back to Top -->
+<button id="backToTop" class="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
 
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#hero" class="nav-logo">
-                <img src="logo.svg" alt="NK Logo" class="logo-img logo-img-nav">
-            </a>
-            <div class="nav-links" id="navLinks">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#aspirations" class="nav-link">Aspirations</a>
-                <a href="#achievements" class="nav-link">Achievements</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
+<!-- ======================== NAVBAR ======================== -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <div class="nav-links" id="navLinks">
+            <a href="#about"       class="nav-link">About</a>
+            <a href="#experience"  class="nav-link">Experience</a>
+            <a href="#projects"    class="nav-link">Projects</a>
+            <a href="#opensource"  class="nav-link">Open Source</a>
+            <a href="#skills"      class="nav-link">Skills</a>
+            <a href="#achievements"class="nav-link">Achievements</a>
+            <a href="#contact"     class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
             <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span><span></span><span></span>
             </button>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-bg-grid"></div>
-        <div class="hero-orb hero-orb-1"></div>
-        <div class="hero-orb hero-orb-2"></div>
-        <div class="hero-orb hero-orb-3"></div>
-        <div class="hero-layout">
-            <div class="hero-content">
-                <div class="hero-badge animate-on-scroll">
-                    <span class="badge-dot"></span>
-                    <span class="text-reveal">Open to Internships &amp; Collaborations</span>
+<!-- Mobile Nav Overlay -->
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- ======================== HERO ======================== -->
+<section id="hero" class="hero">
+    <!-- Particle Canvas -->
+    <canvas id="heroCanvas" class="hero-canvas"></canvas>
+
+    <!-- Floating doodle decorations -->
+    <div class="hero-deco" aria-hidden="true">
+        <span class="dc-star s1">✦</span>
+        <span class="dc-star s2">★</span>
+        <span class="dc-star s3">✦</span>
+        <span class="dc-star s4">✶</span>
+        <span class="dc-star s5">✦</span>
+        <span class="dc-dot d1"></span>
+        <span class="dc-dot d2"></span>
+        <span class="dc-dot d3"></span>
+        <span class="dc-dot d4"></span>
+        <span class="dc-squig sq1">∼∼∼</span>
+        <span class="dc-squig sq2">∼∼</span>
+        <span class="dc-cross cr1">✕</span>
+        <span class="dc-cross cr2">✕</span>
+    </div>
+
+    <div class="hero-wrap">
+        <!-- Left: Content -->
+        <div class="hero-text">
+            <div class="hero-status" id="heroStatus">
+                <span class="status-dot"></span>
+                Backend Dev Intern @ WhatBytes · Open to Opportunities
+            </div>
+
+            <h1 class="hero-heading">
+                <span class="h-hi">Hi there! 👋</span>
+                <span class="h-name">
+                    <span class="h-line line-1">Nikhil Kumar</span>
+                    <span class="h-line line-2 h-accent">Panigrahi</span>
+                </span>
+            </h1>
+
+            <div class="hero-role">
+                <span class="role-pre">I build as a&nbsp;</span>
+                <span class="typewriter" id="typewriter"></span><span class="tw-cur">|</span>
+            </div>
+
+            <p class="hero-desc">
+                CSE undergrad @ KL University · <strong>CGPA 9.7</strong> · Building production REST APIs,
+                RAG pipelines &amp; scalable backend systems that actually ship.
+            </p>
+
+            <div class="hero-stats">
+                <div class="hstat">
+                    <span class="hstat-num" data-count="9.7" data-decimal="1">0</span>
+                    <span class="hstat-lbl">CGPA</span>
                 </div>
-                <h1 class="hero-title animate-on-scroll">
-                    <span class="hero-greeting text-reveal">Hi there, I'm</span>
-                    <span class="hero-name">
-                        <span class="name-letter" data-letter="N">N</span><span class="name-letter" data-letter="i">i</span><span class="name-letter" data-letter="k">k</span><span class="name-letter" data-letter="h">h</span><span class="name-letter" data-letter="i">i</span><span class="name-letter" data-letter="l">l</span>
-                        <span class="name-space"> </span>
-                        <span class="name-letter" data-letter="K">K</span><span class="name-letter" data-letter="u">u</span><span class="name-letter" data-letter="m">m</span><span class="name-letter" data-letter="a">a</span><span class="name-letter" data-letter="r">r</span>
-                        <span class="name-space"> </span>
-                        <span class="name-letter" data-letter="P">P</span><span class="name-letter" data-letter="a">a</span><span class="name-letter" data-letter="n">n</span><span class="name-letter" data-letter="i">i</span><span class="name-letter" data-letter="g">g</span><span class="name-letter" data-letter="r">r</span><span class="name-letter" data-letter="a">a</span><span class="name-letter" data-letter="h">h</span><span class="name-letter" data-letter="i">i</span>
-                    </span>
-                    <span class="hero-role">
-                        <span class="typewriter" id="typewriter"></span>
-                        <span class="typewriter-cursor">|</span>
-                    </span>
-                </h1>
-                <p class="hero-description animate-on-scroll">
-                    <span class="split-text">CSE undergraduate at KL University (CGPA 9.72) with hands-on experience in backend development, AI/ML pipelines, and scalable web applications. Currently sharpening my skills to become a well-rounded software engineer.</span>
+                <div class="hstat-sep"></div>
+                <div class="hstat">
+                    <span class="hstat-num" data-count="2000" data-suffix="+">0</span>
+                    <span class="hstat-lbl">Docs Indexed</span>
+                </div>
+                <div class="hstat-sep"></div>
+                <div class="hstat">
+                    <span class="hstat-num" data-count="5">0</span>
+                    <span class="hstat-lbl">OSS PRs</span>
+                </div>
+                <div class="hstat-sep"></div>
+                <div class="hstat">
+                    <span class="hstat-num" data-count="85" data-suffix="%">0</span>
+                    <span class="hstat-lbl">ML Accuracy</span>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">
+                    See My Work <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    Let's Talk <i class="fas fa-paper-plane"></i>
+                </a>
+                <a href="https://drive.google.com/file/d/1n5NmovJlAjthnho1TgxQ9UokmfJ4T7Zg/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-ghost">
+                    <i class="fas fa-file-alt"></i> Resume
+                </a>
+            </div>
+
+            <div class="hero-socials">
+                <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener" class="hsoc" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/nikhilkumarpanigrahi/" target="_blank" rel="noopener" class="hsoc" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:nikhilkumarpanigrahi29@gmail.com" class="hsoc" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://leetcode.com/" target="_blank" rel="noopener" class="hsoc" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+            </div>
+        </div>
+
+        <!-- Right: Photo -->
+        <div class="hero-photo-wrap">
+            <div class="photo-rings-wrap">
+                <svg class="ring ring-outer" viewBox="0 0 340 340" fill="none">
+                    <circle cx="170" cy="170" r="158" stroke-dasharray="14 9" stroke-linecap="round"/>
+                </svg>
+                <svg class="ring ring-inner" viewBox="0 0 340 340" fill="none">
+                    <circle cx="170" cy="170" r="138" stroke-dasharray="8 16" stroke-linecap="round"/>
+                </svg>
+                <div class="photo-blob"></div>
+                <div class="photo-circle">
+                    <img src="mypic.jpeg" alt="Nikhil Kumar Panigrahi" class="hero-img">
+                </div>
+                <div class="fl-badge b-python"><i class="fab fa-python"></i><span>Python</span></div>
+                <div class="fl-badge b-react"><i class="fab fa-react"></i><span>React</span></div>
+                <div class="fl-badge b-django"><span class="badge-emoji">🦄</span><span>Django</span></div>
+                <div class="fl-badge b-mongo"><span class="badge-emoji">🍃</span><span>MongoDB</span></div>
+                <div class="fl-badge b-ai"><i class="fas fa-brain"></i><span>RAG/AI</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wave divider -->
+    <div class="hero-wave">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" class="wave-path"/>
+        </svg>
+    </div>
+</section>
+
+<!-- ======================== ABOUT ======================== -->
+<section id="about" class="section about">
+    <div class="container">
+        <div class="section-top">
+            <span class="sec-tag">// about me</span>
+            <h2 class="sec-title reveal-up">
+                Who I
+                <span class="titled">
+                    Am
+                    <svg class="sqsvg" viewBox="0 0 60 12" preserveAspectRatio="none"><path d="M2,9 C12,2 22,12 32,7 S48,2 58,7" class="sqp sqp-purple" stroke-linecap="round"/></svg>
+                </span>
+            </h2>
+        </div>
+
+        <div class="about-layout">
+            <div class="about-left reveal-left">
+                <p class="ap">
+                    I'm <strong>Nikhil Kumar Panigrahi</strong> — a second-year CSE student at <strong>KL University, Hyderabad</strong> with a CGPA of <strong>9.7 / 10</strong>. I believe in building over theorizing — every project sharpens my engineering instincts and gets me closer to becoming a complete software professional.
                 </p>
-                <div class="hero-cta animate-on-scroll">
-                    <a href="#projects" class="btn btn-primary">
-                        <span>Explore My Projects</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#contact" class="btn btn-outline">
-                        <span>Let's Connect</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </a>
-                    <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/nikhilkumarpanigrahi/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </div>
-                <div class="hero-stats animate-on-scroll">
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="9.72">0</span>
-                        <span class="stat-label">CGPA</span>
+                <p class="ap">
+                    Currently interning as a <strong>Backend Developer at WhatBytes</strong>, building production REST APIs with Django REST Framework and PostgreSQL. Previously built an <strong>award-winning semantic search & RAG platform</strong> (2nd Runner-Up, MongoDB Hackathon) and an AI-powered fraud detection system at Infosys Springboard.
+                </p>
+                <p class="ap">
+                    Beyond internships, I'm an active contributor to <strong>Oppia Android</strong> (4 merged PRs) and <strong>freeCodeCamp</strong> (10M+ learners). I love open source, scalable architecture, and building things that actually ship.
+                </p>
+                <div class="about-chips">
+                    <div class="chip">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div><strong>Education</strong><span>B.Tech CSE · KL University (2024–2028)</span></div>
                     </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="300">0</span>
-                        <span class="stat-suffix">+</span>
-                        <span class="stat-label">DSA Problems</span>
+                    <div class="chip">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div><strong>Location</strong><span>Hyderabad, India</span></div>
                     </div>
-                    <div class="stat-divider"></div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="85">0</span>
-                        <span class="stat-suffix">%</span>
-                        <span class="stat-label">ML Accuracy</span>
+                    <div class="chip">
+                        <i class="fas fa-briefcase"></i>
+                        <div><strong>Currently</strong><span>Backend Dev Intern @ WhatBytes</span></div>
+                    </div>
+                    <div class="chip">
+                        <i class="fas fa-language"></i>
+                        <div><strong>Languages</strong><span>English · Hindi · Telugu</span></div>
                     </div>
                 </div>
             </div>
-            <div class="hero-image-wrapper animate-on-scroll">
-                <div class="hero-image-container">
-                    <img src="mypic.jpeg" alt="Nikhil Kumar Panigrahi" class="hero-image">
-                    <div class="hero-image-ring"></div>
-                    <div class="hero-image-ring hero-image-ring-2"></div>
-                    <div class="hero-image-glow"></div>
-                    <div class="floating-badge fb-1"><i class="fab fa-python"></i></div>
-                    <div class="floating-badge fb-2"><i class="fab fa-react"></i></div>
-                    <div class="floating-badge fb-3"><i class="fab fa-java"></i></div>
-                    <div class="floating-badge fb-4"><i class="fas fa-brain"></i></div>
-                    <div class="floating-badge fb-5"><i class="fab fa-git-alt"></i></div>
-                </div>
-            </div>
-        </div>
-        <div class="hero-scroll-indicator">
-            <div class="scroll-mouse">
-                <div class="scroll-wheel"></div>
-            </div>
-            <span>Scroll to explore</span>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section class="section about" id="about">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-tag"><span class="tag-flash">//</span> about</span>
-                <h2 class="section-title">
-                    <span class="title-word">Who</span>
-                    <span class="title-word">I</span>
-                    <span class="title-word highlight-word">Am</span>
-                </h2>
-                <div class="section-line"></div>
+            <div class="about-right reveal-right">
+                <div class="about-img-wrap">
+                    <img src="mypic.jpeg" alt="Nikhil Kumar Panigrahi" class="about-img">
+                    <span class="ai-deco deco-a">{ code }</span>
+                    <span class="ai-deco deco-b">&lt;/&gt;</span>
+                    <span class="ai-deco deco-c">✦</span>
+                    <span class="ai-deco deco-d">🐍</span>
+                </div>
             </div>
-            <div class="about-grid">
-                <div class="about-image-wrapper animate-on-scroll">
-                    <div class="about-image-container">
-                        <img src="mypic.jpeg" alt="Nikhil Kumar Panigrahi" class="about-image">
-                        <div class="about-image-border"></div>
-                        <div class="about-image-dots"></div>
-                        <div class="about-decoration about-dec-1">
-                            <span class="code-tag">&lt;code /&gt;</span>
+        </div>
+    </div>
+</section>
+
+<!-- ======================== EXPERIENCE ======================== -->
+<section id="experience" class="section experience">
+    <div class="container">
+        <div class="section-top">
+            <span class="sec-tag">// experience & education</span>
+            <h2 class="sec-title reveal-up">
+                My
+                <span class="titled">
+                    Journey
+                    <svg class="sqsvg" viewBox="0 0 80 12" preserveAspectRatio="none"><path d="M2,9 C16,2 30,12 44,7 S62,2 78,7" class="sqp sqp-coral" stroke-linecap="round"/></svg>
+                </span>
+            </h2>
+        </div>
+
+        <div class="tl-wrap">
+            <!-- Animated line -->
+            <div class="tl-track">
+                <div class="tl-fill" id="tlFill"></div>
+            </div>
+
+            <!-- WhatBytes -->
+            <div class="tl-item reveal-up">
+                <div class="tl-node tl-node-current"></div>
+                <div class="tl-card tl-current">
+                    <div class="tl-top">
+                        <div>
+                            <span class="tl-badge badge-now"><i class="fas fa-circle"></i> Current</span>
+                            <h3 class="tl-role">Backend Developer Intern</h3>
+                            <h4 class="tl-org">WhatBytes</h4>
                         </div>
-                        <div class="about-decoration about-dec-2">
-                            <span class="code-tag">&#123; &#125;</span>
+                        <time class="tl-when"><i class="fas fa-calendar-alt"></i> Jun 2026 – Present</time>
+                    </div>
+                    <ul class="tl-pts">
+                        <li>Building production REST APIs using <strong>Django REST Framework</strong> and <strong>PostgreSQL</strong>, contributing to backend architecture and database design for a B2B SaaS platform.</li>
+                    </ul>
+                    <div class="tl-tech"><span>Django DRF</span><span>PostgreSQL</span><span>REST APIs</span><span>B2B SaaS</span></div>
+                </div>
+            </div>
+
+            <!-- Infosys -->
+            <div class="tl-item reveal-up" style="--delay:.1s">
+                <div class="tl-node"></div>
+                <div class="tl-card">
+                    <div class="tl-top">
+                        <div>
+                            <h3 class="tl-role">AI / ML Virtual Intern</h3>
+                            <h4 class="tl-org">Infosys Springboard</h4>
                         </div>
+                        <time class="tl-when"><i class="fas fa-calendar-alt"></i> Sep 2025 – Nov 2025</time>
+                    </div>
+                    <div class="tl-proj">Project: AI-Based Aadhaar Fraud Detection System</div>
+                    <ul class="tl-pts">
+                        <li>Built an end-to-end <strong>OCR + ML pipeline</strong> for Aadhaar identity verification, achieving <strong>85% fraud detection accuracy</strong> and cutting manual review time by <strong>60%</strong> across 200+ documents.</li>
+                        <li>Deployed Scikit-learn classification models via <strong>Flask REST APIs</strong> for real-time inference on a stateless, horizontally scalable backend.</li>
+                    </ul>
+                    <div class="tl-tech"><span>Python</span><span>OCR</span><span>Scikit-learn</span><span>Flask</span><span>REST APIs</span></div>
+                </div>
+            </div>
+
+            <!-- KL University -->
+            <div class="tl-item reveal-up" style="--delay:.2s">
+                <div class="tl-node tl-node-edu"></div>
+                <div class="tl-card">
+                    <div class="tl-top">
+                        <div>
+                            <span class="tl-badge badge-edu"><i class="fas fa-graduation-cap"></i> Education</span>
+                            <h3 class="tl-role">B.Tech in Computer Science Engineering</h3>
+                            <h4 class="tl-org">KL University, Hyderabad</h4>
+                        </div>
+                        <time class="tl-when"><i class="fas fa-calendar-alt"></i> 2024 – 2028</time>
+                    </div>
+                    <div class="cgpa-tag">CGPA: 9.7 / 10.0</div>
+                    <p class="tl-note">Actively building projects, contributing to open source, and participating in hackathons alongside coursework.</p>
+                </div>
+            </div>
+
+            <!-- FIITJEE -->
+            <div class="tl-item reveal-up" style="--delay:.3s">
+                <div class="tl-node tl-node-edu"></div>
+                <div class="tl-card">
+                    <div class="tl-top">
+                        <div>
+                            <span class="tl-badge badge-edu"><i class="fas fa-school"></i> Education</span>
+                            <h3 class="tl-role">Intermediate Education (MPC)</h3>
+                            <h4 class="tl-org">FIITJEE Junior College, Hyderabad</h4>
+                        </div>
+                        <time class="tl-when"><i class="fas fa-calendar-alt"></i> 2022 – 2024</time>
+                    </div>
+                    <div class="cgpa-tag">Score: 91.5%</div>
+                    <p class="tl-note">Graduated with distinction; built strong foundation in Mathematics, Physics, and analytical problem-solving.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================== PROJECTS ======================== -->
+<section id="projects" class="section projects">
+    <div class="container">
+        <div class="section-top">
+            <span class="sec-tag">// projects</span>
+            <h2 class="sec-title reveal-up">
+                Things I've
+                <span class="titled">
+                    Built
+                    <svg class="sqsvg" viewBox="0 0 50 12" preserveAspectRatio="none"><path d="M2,9 C10,2 20,12 30,7 S42,2 48,7" class="sqp sqp-amber" stroke-linecap="round"/></svg>
+                </span>
+            </h2>
+            <p class="sec-sub reveal-up" style="--delay:.1s">Projects I'm proud of — each one taught me something new.</p>
+        </div>
+
+        <!-- CompanyMind FEATURED -->
+        <div class="proj-featured reveal-up">
+            <div class="pf-glow"></div>
+            <div class="pf-inner">
+                <div class="pf-top">
+                    <div class="pf-icon"><i class="fas fa-search"></i></div>
+                    <div class="pf-links">
+                        <a href="https://github.com/nikhilkumarpanigrahi/Companymind" target="_blank" rel="noopener" class="plnk" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://companymind-web.onrender.com/" target="_blank" rel="noopener" class="plnk live-badge" title="Live Site"><i class="fas fa-external-link-alt"></i> Live</a>
                     </div>
                 </div>
-                <div class="about-content animate-on-scroll">
-                    <h3 class="about-subtitle">
-                        An aspiring <span class="highlight">Software Engineer</span> driven by curiosity &amp; code
-                    </h3>
-                    <p class="about-text fade-in-text">
-                        I'm <strong>Nikhil Kumar Panigrahi</strong>, a second-year Computer Science Engineering 
-                        student at <strong>KL University, Hyderabad</strong>, maintaining a CGPA of <strong>9.72</strong>. 
-                        I believe in learning by building — every project I take on sharpens my engineering intuition 
-                        and pushes me closer to becoming a complete software professional.
-                    </p>
-                    <p class="about-text fade-in-text">
-                        My experience spans from crafting backend services with <strong>Flask &amp; REST APIs</strong> during 
-                        my internship at <strong>Infosys Springboard</strong>, to building community-scale web applications 
-                        with <strong>React.js &amp; Firebase</strong>. I've also explored the AI/ML landscape, developing 
-                        fraud detection pipelines with OCR and machine learning techniques.
-                    </p>
-                    <p class="about-text fade-in-text">
-                        Beyond academics, I've solved <strong>300+ DSA problems</strong> on CodeChef and contributed 
-                        to <strong>freeCodeCamp</strong> as an open-source contributor. I'm constantly seeking 
-                        opportunities that challenge me to grow as an engineer.
-                    </p>
-                    <div class="about-info-grid">
-                        <div class="info-item">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div>
-                                <span class="info-label">Education</span>
-                                <span class="info-value">B.Tech CSE, KL University</span>
-                            </div>
+                <div class="trophy-banner">
+                    <i class="fas fa-trophy"></i>
+                    2nd Runner-Up — MongoDB Smart Bridge Hack N Go Hackathon
+                </div>
+                <h3 class="pf-name">CompanyMind</h3>
+                <p class="pf-sub">Semantic Search &amp; RAG Platform</p>
+                <p class="pf-desc">
+                    Engineered a hybrid semantic search platform over <strong>2,000+ enterprise documents</strong> using MongoDB Atlas Vector Search, full-text search, and Reciprocal Rank Fusion (RRF). Built a production RAG pipeline with embedding generation, vector retrieval, contextual grounding, and LLM-based response generation using FastAPI, Express.js, and Groq Llama 3. Implemented SSE streaming &amp; query caching — cached latency under <strong>&lt;1ms</strong>, hybrid retrieval under <strong>200ms</strong>.
+                </p>
+                <div class="pf-metrics">
+                    <div class="pm"><span class="pmv">2,000+</span><span class="pml">Documents</span></div>
+                    <div class="pm"><span class="pmv">&lt;1ms</span><span class="pml">Cached Latency</span></div>
+                    <div class="pm"><span class="pmv">&lt;200ms</span><span class="pml">Hybrid Retrieval</span></div>
+                    <div class="pm"><span class="pmv">Llama 3</span><span class="pml">LLM Engine</span></div>
+                </div>
+                <div class="pt-tags">
+                    <span>FastAPI</span><span>MongoDB Atlas</span><span>Vector Search</span><span>RAG Pipeline</span>
+                    <span>Groq Llama 3</span><span>Express.js</span><span>RRF</span><span>SSE Streaming</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Two cards row -->
+        <div class="proj-row">
+            <!-- ASSISTLY -->
+            <div class="proj-card reveal-up" style="--delay:.1s">
+                <div class="pc-inner">
+                    <div class="pc-top">
+                        <div class="pc-icon"><i class="fas fa-hands-helping"></i></div>
+                        <div class="pc-links">
+                            <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener" class="plnk" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://assistly-oojv.onrender.com/" target="_blank" rel="noopener" class="plnk" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
                         </div>
-                        <div class="info-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <span class="info-label">Location</span>
-                                <span class="info-value">Hyderabad, India</span>
-                            </div>
+                    </div>
+                    <h3 class="pc-name">ASSISTLY</h3>
+                    <p class="pc-sub">Community Care Platform</p>
+                    <p class="pc-desc">Full-stack platform with Flask, React.js &amp; Firebase. JWT authentication, RBAC for 3 user roles, real-time Firebase sync for concurrent users. Optimized frontend with React hooks &amp; lazy loading.</p>
+                    <div class="pc-metrics">
+                        <div class="pm sm"><span class="pmv">100+</span><span class="pml">Users</span></div>
+                        <div class="pm sm"><span class="pmv">3</span><span class="pml">Roles</span></div>
+                        <div class="pm sm"><span class="pmv">30%</span><span class="pml">Faster Loads</span></div>
+                    </div>
+                    <div class="pt-tags sm">
+                        <span>Flask</span><span>React.js</span><span>Firebase</span><span>JWT</span><span>RBAC</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Fraud Detection -->
+            <div class="proj-card reveal-up" style="--delay:.2s">
+                <div class="pc-inner">
+                    <div class="pc-top">
+                        <div class="pc-icon pc-icon-coral"><i class="fas fa-shield-alt"></i></div>
+                        <div class="pc-links">
+                            <a href="https://github.com/nikhilkumarpanigrahi/AI-BASED-FRAUD-DETECTTION-SYSTEM-USING-UID-AADHAAR" target="_blank" rel="noopener" class="plnk" title="GitHub"><i class="fab fa-github"></i></a>
                         </div>
-                        <div class="info-item">
-                            <i class="fas fa-calendar-alt"></i>
-                            <div>
-                                <span class="info-label">Expected Graduation</span>
-                                <span class="info-value">2028</span>
-                            </div>
-                        </div>
-                        <div class="info-item">
-                            <i class="fas fa-language"></i>
-                            <div>
-                                <span class="info-label">Languages</span>
-                                <span class="info-value">English, Hindi, Telugu</span>
-                            </div>
-                        </div>
+                    </div>
+                    <h3 class="pc-name">AI Aadhaar Fraud Detection</h3>
+                    <p class="pc-sub">ML-Powered Identity Verification</p>
+                    <p class="pc-desc">End-to-end OCR + ML pipeline for Aadhaar identity verification. 85% fraud detection accuracy, cutting manual review time by 60% across 200+ documents. Deployed via stateless Flask REST APIs.</p>
+                    <div class="pc-metrics">
+                        <div class="pm sm"><span class="pmv">85%</span><span class="pml">Accuracy</span></div>
+                        <div class="pm sm"><span class="pmv">60%</span><span class="pml">Less Manual</span></div>
+                        <div class="pm sm"><span class="pmv">200+</span><span class="pml">Samples</span></div>
+                    </div>
+                    <div class="pt-tags sm">
+                        <span>Python</span><span>OCR</span><span>Scikit-learn</span><span>Flask API</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Skills Section -->
-    <section class="section skills" id="skills">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-tag"><span class="tag-flash">//</span> skills</span>
-                <h2 class="section-title">
-                    <span class="title-word">My</span>
-                    <span class="title-word highlight-word">Tech</span>
-                    <span class="title-word">Stack</span>
-                </h2>
-                <div class="section-line"></div>
+<!-- ======================== OPEN SOURCE ======================== -->
+<section id="opensource" class="section opensource">
+    <div class="container">
+        <div class="section-top">
+            <span class="sec-tag">// open source</span>
+            <h2 class="sec-title reveal-up">
+                Giving Back to the
+                <span class="titled">
+                    Community
+                    <svg class="sqsvg wide" viewBox="0 0 120 12" preserveAspectRatio="none"><path d="M2,9 C20,2 38,12 56,7 S80,2 100,7 S114,10 118,7" class="sqp sqp-teal" stroke-linecap="round"/></svg>
+                </span>
+            </h2>
+        </div>
+
+        <div class="oss-grid">
+            <!-- Oppia -->
+            <div class="oss-card reveal-up">
+                <div class="oss-hdr">
+                    <div class="oss-ico oss-android"><i class="fab fa-android"></i></div>
+                    <div>
+                        <h3 class="oss-org">Oppia Android</h3>
+                        <span class="oss-role">CLAM Team Member</span>
+                    </div>
+                    <div class="pr-count"><span>4</span> PRs Merged</div>
+                </div>
+                <p class="oss-desc">Developed Kotlin unit and UI tests for profile management, localization, and state persistence workflows. Improved automated test coverage across asynchronous workflows, validation pipelines, and edge-case scenarios through structured review cycles.</p>
+                <div class="pr-row">
+                    <span class="pr-lbl"><i class="fas fa-code-branch"></i> Pull Requests:</span>
+                    <div class="pr-chips">
+                        <a href="https://github.com/oppia/oppia-android/pull/6121" target="_blank" rel="noopener" class="prchip">#6121</a>
+                        <a href="https://github.com/oppia/oppia-android/pull/6144" target="_blank" rel="noopener" class="prchip">#6144</a>
+                        <a href="https://github.com/oppia/oppia-android/pull/6175" target="_blank" rel="noopener" class="prchip">#6175</a>
+                        <a href="https://github.com/oppia/oppia-android/pull/6198" target="_blank" rel="noopener" class="prchip">#6198</a>
+                    </div>
+                </div>
+                <div class="pt-tags sm"><span>Kotlin</span><span>Unit Tests</span><span>UI Tests</span><span>Android</span></div>
             </div>
-            <div class="skills-grid">
-                <div class="skill-category animate-on-scroll" data-category="languages">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-code"></i></div>
-                        <h3>Programming Languages</h3>
+
+            <!-- freeCodeCamp -->
+            <div class="oss-card reveal-up" style="--delay:.1s">
+                <div class="oss-hdr">
+                    <div class="oss-ico oss-fcc"><i class="fab fa-free-code-camp"></i></div>
+                    <div>
+                        <h3 class="oss-org">freeCodeCamp</h3>
+                        <span class="oss-role">Curriculum Contributor</span>
                     </div>
-                    <div class="skill-items">
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">C++</span><span class="skill-percent">95%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 95%"></div></div></div>
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">Java</span><span class="skill-percent">90%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 90%"></div></div></div>
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">Python</span><span class="skill-percent">88%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 88%"></div></div></div>
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">JavaScript</span><span class="skill-percent">78%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 78%"></div></div></div>
+                    <div class="pr-count"><span>1</span> PR Merged</div>
+                </div>
+                <p class="oss-desc">Added Java OOP curriculum content covering classes, interfaces, and inheritance. Content was reviewed and merged by freeCodeCamp maintainers — now live for <strong>10M+ learners</strong> worldwide on the platform.</p>
+                <div class="pr-row">
+                    <span class="pr-lbl"><i class="fas fa-code-branch"></i> Pull Request:</span>
+                    <div class="pr-chips">
+                        <a href="https://github.com/freeCodeCamp/freeCodeCamp/pull/63866" target="_blank" rel="noopener" class="prchip">#63866</a>
                     </div>
                 </div>
-                <div class="skill-category animate-on-scroll" data-category="frontend">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-palette"></i></div>
-                        <h3>Web Development</h3>
-                    </div>
-                    <div class="skill-items">
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">React.js</span><span class="skill-percent">80%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 80%"></div></div></div>
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">HTML5 &amp; CSS3</span><span class="skill-percent">88%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 88%"></div></div></div>
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">Flask (Backend)</span><span class="skill-percent">85%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 85%"></div></div></div>
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">REST APIs</span><span class="skill-percent">88%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 88%"></div></div></div>
-                    </div>
+                <div class="pt-tags sm"><span>Java</span><span>OOP</span><span>Curriculum</span><span>10M+ Users</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======================== SKILLS ======================== -->
+<section id="skills" class="section skills">
+    <div class="container">
+        <div class="section-top">
+            <span class="sec-tag">// tech stack</span>
+            <h2 class="sec-title reveal-up">
+                What I
+                <span class="titled">
+                    Work With
+                    <svg class="sqsvg med" viewBox="0 0 95 12" preserveAspectRatio="none"><path d="M2,9 C14,2 28,12 44,7 S64,2 82,7 S92,10 93,7" class="sqp sqp-purple" stroke-linecap="round"/></svg>
+                </span>
+            </h2>
+        </div>
+
+        <div class="skills-grid">
+            <div class="sg reveal-up">
+                <div class="sg-hdr"><i class="fas fa-code"></i><span>Languages</span></div>
+                <div class="stags">
+                    <span class="stag sl">Python</span>
+                    <span class="stag sl">Java</span>
+                    <span class="stag sl">Kotlin</span>
                 </div>
-                <div class="skill-category animate-on-scroll" data-category="corecs">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-brain"></i></div>
-                        <h3>Core CS &amp; Problem Solving</h3>
-                    </div>
-                    <div class="skill-items">
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">Data Structures &amp; Algorithms</span><span class="skill-percent">92%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 92%"></div></div></div>
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">Object-Oriented Programming</span><span class="skill-percent">88%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 88%"></div></div></div>
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">System Design (Learning)</span><span class="skill-percent">80%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 80%"></div></div></div>
-                    </div>
+            </div>
+            <div class="sg reveal-up" style="--delay:.06s">
+                <div class="sg-hdr"><i class="fas fa-server"></i><span>Backend</span></div>
+                <div class="stags">
+                    <span class="stag sb">Django (DRF)</span>
+                    <span class="stag sb">Flask</span>
+                    <span class="stag sb">FastAPI</span>
+                    <span class="stag sb">REST APIs</span>
+                    <span class="stag sb">JWT Auth</span>
+                    <span class="stag sb">RBAC</span>
                 </div>
-                <div class="skill-category animate-on-scroll" data-category="tools">
-                    <div class="skill-category-header">
-                        <div class="skill-icon"><i class="fas fa-database"></i></div>
-                        <h3>Databases &amp; DevTools</h3>
-                    </div>
-                    <div class="skill-items">
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">PostgreSQL</span><span class="skill-percent">85%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 85%"></div></div></div>
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">MongoDB</span><span class="skill-percent">86%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 86%"></div></div></div>
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">Firebase</span><span class="skill-percent">82%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 82%"></div></div></div>
-                        <div class="skill-item"><div class="skill-info"><span class="skill-name">Git &amp; GitHub</span><span class="skill-percent">90%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 90%"></div></div></div>
-                    </div>
+            </div>
+            <div class="sg reveal-up" style="--delay:.12s">
+                <div class="sg-hdr"><i class="fas fa-database"></i><span>Databases</span></div>
+                <div class="stags">
+                    <span class="stag sd">PostgreSQL</span>
+                    <span class="stag sd">MongoDB</span>
+                    <span class="stag sd">Atlas Vector Search</span>
+                    <span class="stag sd">Firebase</span>
+                </div>
+            </div>
+            <div class="sg reveal-up" style="--delay:.18s">
+                <div class="sg-hdr"><i class="fas fa-brain"></i><span>ML / AI</span></div>
+                <div class="stags">
+                    <span class="stag sa">RAG Pipelines</span>
+                    <span class="stag sa">NLP Embeddings</span>
+                    <span class="stag sa">Vector Databases</span>
+                    <span class="stag sa">Scikit-learn</span>
+                    <span class="stag sa">Computer Vision</span>
+                    <span class="stag sa">OCR</span>
+                </div>
+            </div>
+            <div class="sg reveal-up" style="--delay:.24s">
+                <div class="sg-hdr"><i class="fas fa-palette"></i><span>Frontend</span></div>
+                <div class="stags">
+                    <span class="stag sf">React.js</span>
+                    <span class="stag sf">Android (Kotlin)</span>
+                    <span class="stag sf">HTML5 / CSS3</span>
+                </div>
+            </div>
+            <div class="sg reveal-up" style="--delay:.30s">
+                <div class="sg-hdr"><i class="fas fa-tools"></i><span>Tools</span></div>
+                <div class="stags">
+                    <span class="stag st">Git</span>
+                    <span class="stag st">GitHub</span>
+                    <span class="stag st">Postman</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Experience Section -->
-    <section class="section experience" id="experience">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-tag"><span class="tag-flash">//</span> journey</span>
-                <h2 class="section-title">
-                    <span class="title-word">Experience</span>
-                    <span class="title-word">&amp;</span>
-                    <span class="title-word highlight-word">Education</span>
-                </h2>
-                <div class="section-line"></div>
+<!-- ======================== ACHIEVEMENTS ======================== -->
+<section id="achievements" class="section achievements">
+    <div class="container">
+        <div class="section-top">
+            <span class="sec-tag">// achievements</span>
+            <h2 class="sec-title reveal-up">
+                Things I'm
+                <span class="titled">
+                    Proud Of
+                    <svg class="sqsvg med" viewBox="0 0 90 12" preserveAspectRatio="none"><path d="M2,9 C14,2 28,12 42,7 S62,2 80,7 S88,10 88,7" class="sqp sqp-coral" stroke-linecap="round"/></svg>
+                </span>
+            </h2>
+        </div>
+
+        <div class="ach-grid">
+            <div class="ac ac-featured reveal-up">
+                <div class="ac-ico ac-gold"><i class="fas fa-trophy"></i></div>
+                <h3>2nd Runner-Up</h3>
+                <p>MongoDB Smart Bridge Hack N Go Hackathon — CompanyMind RAG platform</p>
+                <a href="https://drive.google.com/file/d/1pVFm4myPBx7H6lIH82vVf37LlQvl71hl/view" target="_blank" rel="noopener" class="ac-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
             </div>
-            <div class="timeline">
-                <div class="timeline-item animate-on-scroll" data-side="left">
-                    <div class="timeline-content">
-                        <div class="timeline-badge education"><i class="fas fa-graduation-cap"></i></div>
-                        <div class="timeline-card">
-                            <span class="timeline-date">2024 – 2028</span>
-                            <h3 class="timeline-title">B.Tech in Computer Science Engineering</h3>
-                            <h4 class="timeline-subtitle">KL University, Hyderabad</h4>
-                            <div class="education-highlight"><span class="cgpa-badge">CGPA: 9.72 / 10</span></div>
-                            <p>Currently in my second year with outstanding academic performance. Actively building projects and participating in coding competitions alongside coursework.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="timeline-item animate-on-scroll" data-side="left">
-                    <div class="timeline-content">
-                        <div class="timeline-badge education"><i class="fas fa-school"></i></div>
-                        <div class="timeline-card">
-                            <span class="timeline-date">2022 – 2024</span>
-                            <h3 class="timeline-title">Intermediate Education (MPC)</h3>
-                            <h4 class="timeline-subtitle">FIITJEE Junior College, Hyderabad</h4>
-                            <div class="education-highlight"><span class="cgpa-badge">Score: 91.5%</span></div>
-                            <p>Graduated with distinction, building a strong foundation in Mathematics, Physics, and analytical thinking that fuels my engineering approach.</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="ac reveal-up" style="--delay:.08s">
+                <div class="ac-ico ac-purple"><i class="fas fa-certificate"></i></div>
+                <h3>MongoDB Associate Developer</h3>
+                <p>Official MongoDB certification for database &amp; Atlas expertise</p>
+                <a href="https://drive.google.com/file/d/1pdQh1szi0LW-6rZhy02oHN1D7ey7TRZJ/view" target="_blank" rel="noopener" class="ac-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+            </div>
+            <div class="ac reveal-up" style="--delay:.16s">
+                <div class="ac-ico ac-teal"><i class="fas fa-robot"></i></div>
+                <h3>AI/ML Virtual Internship</h3>
+                <p>Certified by Infosys Springboard for completing AI/ML internship</p>
+                <a href="https://drive.google.com/file/d/1BfNiB5rlovE9IoXqssthILGnOiPCmBqU/view" target="_blank" rel="noopener" class="ac-link">View Certificate <i class="fas fa-external-link-alt"></i></a>
+            </div>
+            <div class="ac reveal-up" style="--delay:.08s">
+                <div class="ac-ico ac-green"><i class="fas fa-code-branch"></i></div>
+                <h3>Open Source Contributor</h3>
+                <p>5 PRs merged across Oppia Android &amp; freeCodeCamp (10M+ learners)</p>
+            </div>
+            <div class="ac reveal-up" style="--delay:.16s">
+                <div class="ac-ico ac-amber"><i class="fas fa-star"></i></div>
+                <h3>CGPA 9.7 / 10</h3>
+                <p>Consistent academic excellence at KL University CSE — 2nd year</p>
+            </div>
+            <div class="ac reveal-up" style="--delay:.24s">
+                <div class="ac-ico ac-coral"><i class="fas fa-rocket"></i></div>
+                <h3>Production Systems</h3>
+                <p>Built &amp; shipped apps serving real users — RAG platform, community app, ML APIs</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Projects Section -->
-    <section class="section projects" id="projects">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-tag"><span class="tag-flash">//</span> work</span>
-                <h2 class="section-title">
-                    <span class="title-word">Featured</span>
-                    <span class="title-word highlight-word">Projects</span>
-                </h2>
-                <div class="section-line"></div>
-                <p class="section-subtitle animate-on-scroll">Projects I've built that I'm proud of — each one taught me something new.</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card animate-on-scroll">
-                    <div class="project-card-inner">
-                        <div class="project-header">
-                            <div class="project-icon"><i class="fas fa-hands-helping"></i></div>
-                            <div class="project-links">
-                                <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="Source Code"><i class="fab fa-github"></i></a>
-                                <a href="https://assistly-oojv.onrender.com" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
-                        <h3 class="project-title">ASSISTLY</h3>
-                        <p class="project-subtitle">Community Care Platform</p>
-                        <p class="project-description">A scalable web application for community-based support services. Features secure role-based access control for three user roles, real-time data synchronization with Firebase, and optimized frontend performance with lazy loading and caching strategies.</p>
-                        <div class="project-metrics">
-                            <div class="metric"><span class="metric-value">100+</span><span class="metric-label">Concurrent Users</span></div>
-                            <div class="metric"><span class="metric-value">30%</span><span class="metric-label">Faster Loads</span></div>
-                            <div class="metric"><span class="metric-value">3</span><span class="metric-label">User Roles</span></div>
-                        </div>
-                        <div class="project-tags"><span class="tag">React.js</span><span class="tag">Firebase</span><span class="tag">RBAC</span><span class="tag">Real-time</span></div>
-                    </div>
-                    <div class="project-glow"></div>
-                </div>
-                <div class="project-card animate-on-scroll">
-                    <div class="project-card-inner">
-                        <div class="project-header">
-                            <div class="project-icon"><i class="fas fa-shield-alt"></i></div>
-                            <div class="project-links">
-                                <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener noreferrer" class="project-link-icon" title="Source Code"><i class="fab fa-github"></i></a>
-                            </div>
-                        </div>
-                        <h3 class="project-title">AI Aadhaar Fraud Detection</h3>
-                        <p class="project-subtitle">ML-Powered Identity Verification</p>
-                        <p class="project-description">An end-to-end machine learning pipeline that detects identity fraud in Aadhaar documents using OCR for text extraction and classification models for validation. Inference exposed via RESTful APIs.</p>
-                        <div class="project-metrics">
-                            <div class="metric"><span class="metric-value">85%</span><span class="metric-label">Accuracy</span></div>
-                            <div class="metric"><span class="metric-value">200+</span><span class="metric-label">Samples Tested</span></div>
-                            <div class="metric"><span class="metric-value">60%</span><span class="metric-label">Less Manual Work</span></div>
-                        </div>
-                        <div class="project-tags"><span class="tag">Python</span><span class="tag">ML</span><span class="tag">OCR</span><span class="tag">Flask API</span></div>
-                    </div>
-                    <div class="project-glow"></div>
-                </div>
-            </div>
+<!-- ======================== CONTACT ======================== -->
+<section id="contact" class="section contact">
+    <div class="container">
+        <div class="section-top">
+            <span class="sec-tag">// let's talk</span>
+            <h2 class="sec-title reveal-up">
+                Get In
+                <span class="titled">
+                    Touch
+                    <svg class="sqsvg" viewBox="0 0 55 12" preserveAspectRatio="none"><path d="M2,9 C10,2 22,12 34,7 S46,2 53,7" class="sqp sqp-purple" stroke-linecap="round"/></svg>
+                </span>
+            </h2>
+            <p class="sec-sub reveal-up" style="--delay:.1s">Internship, collaboration, or just a hello — I'd love to hear from you!</p>
         </div>
-    </section>
 
-    <!-- Aspirations Section -->
-    <section class="section aspirations" id="aspirations">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-tag"><span class="tag-flash">//</span> future</span>
-                <h2 class="section-title">
-                    <span class="title-word">Where</span>
-                    <span class="title-word">I'm</span>
-                    <span class="title-word highlight-word">Headed</span>
-                </h2>
-                <div class="section-line"></div>
-                <p class="section-subtitle animate-on-scroll">The roles and domains I'm actively working toward.</p>
-            </div>
-            <div class="aspirations-grid">
-                <div class="aspiration-card animate-on-scroll">
-                    <div class="aspiration-number">01</div>
-                    <div class="aspiration-icon"><i class="fas fa-server"></i></div>
-                    <h3>Backend / Software Engineer</h3>
-                    <p>Building robust, scalable backend systems with clean architecture, microservices, and efficient database design is my primary career goal.</p>
-                    <div class="aspiration-skills"><span>Java</span><span>Python</span><span>System Design</span><span>APIs</span></div>
-                    <div class="aspiration-status">
-                        <div class="status-bar"><div class="status-fill" style="--fill: 70%"></div></div>
-                        <span>Actively Building Towards</span>
+        <div class="contact-layout">
+            <div class="contact-left reveal-left">
+                <div class="ccard" data-copy="nikhilkumarpanigrahi29@gmail.com">
+                    <div class="cico"><i class="fas fa-envelope"></i></div>
+                    <div class="ctxt">
+                        <strong>Email</strong>
+                        <span>nikhilkumarpanigrahi29@gmail.com</span>
                     </div>
+                    <button class="copy-btn" data-copy="nikhilkumarpanigrahi29@gmail.com" title="Copy email"><i class="fas fa-copy"></i></button>
                 </div>
-                <div class="aspiration-card animate-on-scroll">
-                    <div class="aspiration-number">02</div>
-                    <div class="aspiration-icon"><i class="fas fa-robot"></i></div>
-                    <h3>AI / Machine Learning Engineer</h3>
-                    <p>Fascinated by intelligent systems — from OCR pipelines to classification models. Exploring deep learning and NLP as my next frontier.</p>
-                    <div class="aspiration-skills"><span>Python</span><span>TensorFlow</span><span>NLP</span><span>CV</span></div>
-                    <div class="aspiration-status">
-                        <div class="status-bar"><div class="status-fill" style="--fill: 50%"></div></div>
-                        <span>Learning &amp; Exploring</span>
+                <a href="tel:+918008261088" class="ccard">
+                    <div class="cico"><i class="fas fa-phone"></i></div>
+                    <div class="ctxt">
+                        <strong>Phone</strong>
+                        <span>+91-8008261088</span>
                     </div>
-                </div>
-                <div class="aspiration-card animate-on-scroll">
-                    <div class="aspiration-number">03</div>
-                    <div class="aspiration-icon"><i class="fas fa-globe"></i></div>
-                    <h3>Full-Stack Developer</h3>
-                    <p>Growing my frontend expertise alongside backend strengths to deliver complete web applications. React.js is my current focus.</p>
-                    <div class="aspiration-skills"><span>React</span><span>Node.js</span><span>MongoDB</span><span>Firebase</span></div>
-                    <div class="aspiration-status">
-                        <div class="status-bar"><div class="status-fill" style="--fill: 55%"></div></div>
-                        <span>Growing Towards</span>
+                </a>
+                <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener" class="ccard">
+                    <div class="cico"><i class="fab fa-github"></i></div>
+                    <div class="ctxt">
+                        <strong>GitHub</strong>
+                        <span>github.com/nikhilkumarpanigrahi</span>
                     </div>
-                </div>
-                <div class="aspiration-card animate-on-scroll">
-                    <div class="aspiration-number">04</div>
-                    <div class="aspiration-icon"><i class="fas fa-code-branch"></i></div>
-                    <h3>Open Source Contributor</h3>
-                    <p>Started with freeCodeCamp contributions. My goal is to consistently contribute to impactful open-source projects and build in public.</p>
-                    <div class="aspiration-skills"><span>Git</span><span>GitHub</span><span>Community</span><span>Collaboration</span></div>
-                    <div class="aspiration-status">
-                        <div class="status-bar"><div class="status-fill" style="--fill: 40%"></div></div>
-                        <span>Getting Started</span>
+                </a>
+                <a href="https://www.linkedin.com/in/nikhilkumarpanigrahi/" target="_blank" rel="noopener" class="ccard">
+                    <div class="cico"><i class="fab fa-linkedin"></i></div>
+                    <div class="ctxt">
+                        <strong>LinkedIn</strong>
+                        <span>linkedin.com/in/nikhilkumarpanigrahi</span>
+                    </div>
+                </a>
+
+                <div class="availability-card">
+                    <div class="avail-dot"></div>
+                    <div>
+                        <strong>Currently available for</strong>
+                        <p>Full-time roles · Internships · Project Collaborations</p>
                     </div>
                 </div>
             </div>
+
+            <form class="contact-form reveal-right" id="contactForm" novalidate>
+                <div class="form-row-2">
+                    <div class="fld">
+                        <label for="cf-name">Name <span class="req">*</span></label>
+                        <input type="text" id="cf-name" name="name" placeholder="Your Name" required autocomplete="name">
+                        <span class="ferr" id="err-name"></span>
+                    </div>
+                    <div class="fld">
+                        <label for="cf-email">Email <span class="req">*</span></label>
+                        <input type="email" id="cf-email" name="email" placeholder="your@email.com" required autocomplete="email">
+                        <span class="ferr" id="err-email"></span>
+                    </div>
+                </div>
+                <div class="fld">
+                    <label for="cf-subject">Subject <span class="req">*</span></label>
+                    <input type="text" id="cf-subject" name="subject" placeholder="What's this about?" required>
+                    <span class="ferr" id="err-subject"></span>
+                </div>
+                <div class="fld">
+                    <label for="cf-message">Message <span class="req">*</span></label>
+                    <textarea id="cf-message" name="message" rows="5" placeholder="Tell me what's on your mind..." required></textarea>
+                    <span class="ferr" id="err-message"></span>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
+                    <span class="btn-txt">Send Message</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+                <p class="form-note"><i class="fas fa-info-circle"></i> Opens your email client to send directly.</p>
+            </form>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Achievements Section -->
-    <section class="section achievements" id="achievements">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-tag"><span class="tag-flash">//</span> milestones</span>
-                <h2 class="section-title">
-                    <span class="title-word">Achievements</span>
-                    <span class="title-word">&amp;</span>
-                    <span class="title-word highlight-word">Certifications</span>
-                </h2>
-                <div class="section-line"></div>
+<!-- ======================== FOOTER ======================== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-body">
+            <p class="ft-text">Crafted with <span class="heart">♥</span> by <strong>Nikhil Kumar Panigrahi</strong></p>
+            <div class="ft-socials">
+                <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/nikhilkumarpanigrahi/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:nikhilkumarpanigrahi29@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
-            <div class="achievements-grid">
-                <div class="achievement-card animate-on-scroll"><div class="achievement-icon"><i class="fas fa-trophy"></i></div><h3>300+ DSA Problems Solved</h3><p>Consistent problem solver on CodeChef — arrays, trees, graphs, dynamic programming, and competitive coding.</p></div>
-                <div class="achievement-card animate-on-scroll"><div class="achievement-icon"><i class="fas fa-code-branch"></i></div><h3>Open Source Contributor</h3><p>Active contributor to freeCodeCamp with accepted Pull Requests improving the platform.</p></div>
-                <div class="achievement-card animate-on-scroll"><div class="achievement-icon"><i class="fas fa-certificate"></i></div><h3>AI/ML Virtual Internship</h3><p>Certified by Infosys Springboard for successfully completing the AI/ML Virtual Internship program.</p></div>
-                <div class="achievement-card animate-on-scroll"><div class="achievement-icon"><i class="fas fa-database"></i></div><h3>MongoDB Associate Developer</h3><p>Earned the official MongoDB Associate Developer Certification demonstrating database expertise.</p></div>
-                <div class="achievement-card animate-on-scroll"><div class="achievement-icon"><i class="fas fa-laptop-code"></i></div><h3>Problem Solving Through C</h3><p>Certified in foundational problem solving techniques using C programming language.</p></div>
-                <div class="achievement-card animate-on-scroll"><div class="achievement-icon"><i class="fas fa-rocket"></i></div><h3>Production-Ready Applications</h3><p>Built and deployed scalable web applications used by real users in production environments.</p></div>
-            </div>
+            <p class="ft-copy">&copy; 2026 Nikhil Kumar Panigrahi · All rights reserved</p>
         </div>
-    </section>
+    </div>
+</footer>
 
-    <!-- Contact Section -->
-    <section class="section contact" id="contact">
-        <div class="container">
-            <div class="section-header animate-on-scroll">
-                <span class="section-tag"><span class="tag-flash">//</span> connect</span>
-                <h2 class="section-title">
-                    <span class="title-word">Let's</span>
-                    <span class="title-word highlight-word">Talk</span>
-                </h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info animate-on-scroll">
-                    <h3>I'd love to hear from you</h3>
-                    <p>Whether it's an internship opportunity, a project collaboration, or just a conversation about tech — my inbox is always open. Drop me a message and I'll get back to you as soon as I can!</p>
-                    <div class="contact-details">
-                        <a href="mailto:nikhilkumarpanigrahi29@gmail.com" class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div><span class="contact-label">Email</span><span class="contact-value">nikhilkumarpanigrahi29@gmail.com</span></div>
-                        </a>
-                        <a href="tel:+918008261088" class="contact-item">
-                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                            <div><span class="contact-label">Phone</span><span class="contact-value">+91-8008261088</span></div>
-                        </a>
-                        <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener noreferrer" class="contact-item">
-                            <div class="contact-icon"><i class="fab fa-github"></i></div>
-                            <div><span class="contact-label">GitHub</span><span class="contact-value">github.com/nikhilkumarpanigrahi</span></div>
-                        </a>
-                        <a href="https://www.linkedin.com/in/nikhilkumarpanigrahi/" target="_blank" rel="noopener noreferrer" class="contact-item">
-                            <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                            <div><span class="contact-label">LinkedIn</span><span class="contact-value">linkedin.com/in/nikhilkumarpanigrahi</span></div>
-                        </a>
-                    </div>
-                </div>
-                <form class="contact-form animate-on-scroll" id="contactForm">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" required placeholder=" ">
-                        <label for="name">Your Name</label>
-                        <div class="form-line"></div>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required placeholder=" ">
-                        <label for="email">Your Email</label>
-                        <div class="form-line"></div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="subject" name="subject" required placeholder=" ">
-                        <label for="subject">Subject</label>
-                        <div class="form-line"></div>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
-                        <label for="message">Your Message</label>
-                        <div class="form-line"></div>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">
-                        <span>Send Message via Email</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                    <p class="form-note">This will open your email client to send the message directly to me.</p>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo"><img src="logo.svg" alt="NK Logo" class="logo-img logo-img-footer"></div>
-                <p class="footer-text">Designed &amp; Crafted with passion by <strong>Nikhil Kumar Panigrahi</strong></p>
-                <div class="footer-social">
-                    <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/nikhilkumarpanigrahi/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="mailto:nikhilkumarpanigrahi29@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                </div>
-                <p class="footer-copyright">&copy; 2026 Nikhil Kumar Panigrahi. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>
