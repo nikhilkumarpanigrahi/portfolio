@@ -1,402 +1,1002 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikhil Kumar Panigrahi — Backend Developer</title>
-    <meta name="description" content="Backend Developer Intern at WhatBytes. CSE @ KL University. Building REST APIs, RAG pipelines & scalable systems.">
+    <title>Nikhil Kumar Panigrahi — Backend &amp; Systems Engineer</title>
+    <meta name="description" content="Portfolio of Nikhil Kumar Panigrahi. Backend & Systems Engineer, Rust Developer, 6 OSS PRs in Oppia Android & freeCodeCamp. 9.7 CGPA @ KL University.">
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+
+    <!-- Fonts: Space Grotesk + Inter + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=senior1">
 </head>
-<body>
 
-<div id="scrollBar" class="scroll-bar"></div>
-<div class="cursor" id="cursor"></div>
+<body class="is-loading">
 
-<!-- Preloader -->
-<div id="preloader" class="preloader">
-    <div class="pl-terminal">
-        <div class="pl-bar">
-            <span class="pl-dot r"></span><span class="pl-dot y"></span><span class="pl-dot g"></span>
-            <span class="pl-title">terminal</span>
-        </div>
-        <div class="pl-lines" id="plLines"></div>
-        <div class="pl-active">
-            <span class="pl-prompt">▶</span>
-            <span id="plTyping" class="pl-typing"></span>
-            <span class="pl-cur">█</span>
-        </div>
-    </div>
-</div>
-
-<!-- Toast -->
-<div id="toast" class="toast"><i class="fas fa-check-circle toast-icon"></i><span id="toastMsg"></span></div>
-<button id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></button>
-
-<!-- Navbar -->
-<nav class="navbar" id="navbar">
-    <div class="nav-inner">
-        <div class="nav-links" id="navLinks">
-            <a href="#experience"   class="nav-link">Experience</a>
-            <a href="#projects"     class="nav-link">Projects</a>
-            <a href="#opensource"   class="nav-link">Open Source</a>
-            <a href="#skills"       class="nav-link">Skills</a>
-            <a href="#achievements" class="nav-link">Achievements</a>
-            <a href="#contact"      class="nav-link">Contact</a>
-        </div>
-        <button class="nav-toggle" id="navToggle" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
-</nav>
-<div class="nav-overlay" id="navOverlay"></div>
-
-<!-- ── HERO ── -->
-<section id="hero" class="hero">
-    <div class="hero-inner">
-        <div class="hero-text">
-            <div class="hero-status">
-                <span class="status-dot"></span> Open to Opportunities &nbsp;·&nbsp; Backend Dev Intern @ WhatBytes
+    <!-- ── STUDIO SHUTTER PRELOADER ── -->
+    <div id="loader" class="preloader">
+        <div class="loader-content">
+            <div class="loader-header">
+                <span class="loader-mono">NK / ARCHITECTURE</span>
+                <span class="loader-mono">HYDERABAD, IN &bull; 2026</span>
             </div>
-            <h1 class="hero-name">Nikhil Kumar<br><span class="accent">Panigrahi</span></h1>
-            <p class="hero-role">
-                <span id="typewriter"></span><span class="tw-cur">|</span>
-            </p>
-            <p class="hero-bio">Backend developer interning at WhatBytes. I build production-grade REST APIs, RAG pipelines, and scalable systems — currently in my 2nd year at KL University.</p>
-            <div class="hero-stats">
-                <div class="hstat"><span class="hstat-num" data-count="9.7" data-decimal="1">0</span><span class="hstat-lbl">GPA / 10</span></div>
-                <div class="hstat-div"></div>
-                <div class="hstat"><span class="hstat-num" data-count="3">0</span><span class="hstat-lbl">Projects Shipped</span></div>
-                <div class="hstat-div"></div>
-                <div class="hstat"><span class="hstat-num" data-count="5">0</span><span class="hstat-lbl">OSS PRs Merged</span></div>
-                <div class="hstat-div"></div>
-                <div class="hstat"><span class="hstat-num" data-count="1">0</span><span class="hstat-lbl">Hackathon Win</span></div>
-            </div>
-            <div class="hero-cta">
-                <a href="#projects" class="btn btn-primary">View Projects <i class="fas fa-arrow-right"></i></a>
-                <a href="https://drive.google.com/file/d/1n5NmovJlAjthnho1TgxQ9UokmfJ4T7Zg/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-outline"><i class="fas fa-file-alt"></i> Resume</a>
-                <a href="#contact" class="btn btn-ghost">Contact Me</a>
-            </div>
-            <div class="hero-socials">
-                <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener" class="soc" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/nikhilkumarpanigrahi/" target="_blank" rel="noopener" class="soc" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:nikhilkumarpanigrahi29@gmail.com" class="soc" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://leetcode.com/" target="_blank" rel="noopener" class="soc" aria-label="LeetCode"><i class="fas fa-code"></i></a>
-            </div>
-        </div>
-        <div class="hero-photo">
-            <img src="mypic.jpeg" alt="Nikhil Kumar Panigrahi">
-        </div>
-    </div>
-</section>
 
-<!-- ── EXPERIENCE ── -->
-<section id="experience" class="section">
-    <div class="container">
-        <div class="sec-hdr reveal-up">
-            <span class="sec-tag">// experience</span>
-            <h2 class="sec-title">Where I've Worked</h2>
-        </div>
-        <div class="timeline">
-
-            <div class="tl-item reveal-up">
-                <div class="tl-dot active"></div>
-                <div class="tl-card">
-                    <div class="tl-head">
-                        <div>
-                            <span class="badge badge-green">Current</span>
-                            <h3>Backend Developer Intern</h3>
-                            <span class="tl-org">WhatBytes</span>
-                        </div>
-                        <time>Jun 2026 – Present</time>
-                    </div>
-                    <ul class="tl-pts">
-                        <li>Building production REST APIs with Django DRF &amp; PostgreSQL for a B2B SaaS platform.</li>
-                    </ul>
-                    <div class="tl-tags"><span>Django DRF</span><span>PostgreSQL</span><span>REST APIs</span></div>
+            <div class="loader-center">
+                <div class="loader-counter-wrap">
+                    <span class="loader-num" id="loaderNum">00</span>
+                    <span class="loader-pct">%</span>
                 </div>
+                <div class="loader-track">
+                    <div class="loader-progress" id="loaderProgress"></div>
+                </div>
+                <div class="loader-status" id="loaderStatus">INITIALIZING CORE ARCHITECTURE...</div>
             </div>
 
-            <div class="tl-item reveal-up" style="--delay:.1s">
-                <div class="tl-dot"></div>
-                <div class="tl-card">
-                    <div class="tl-head">
-                        <div>
-                            <h3>AI / ML Virtual Intern</h3>
-                            <span class="tl-org">Infosys Springboard</span>
-                        </div>
-                        <time>Sep – Nov 2025</time>
-                    </div>
-                    <ul class="tl-pts">
-                        <li>Built OCR + ML pipeline for Aadhaar fraud detection — <strong>85% accuracy</strong>, 60% less manual review across 200+ documents.</li>
-                        <li>Deployed via stateless Flask REST APIs for real-time inference.</li>
-                    </ul>
-                    <div class="tl-tags"><span>Python</span><span>Scikit-learn</span><span>OCR</span><span>Flask</span></div>
-                </div>
-            </div>
-
-            <div class="tl-item reveal-up" style="--delay:.2s">
-                <div class="tl-dot edu"></div>
-                <div class="tl-card">
-                    <div class="tl-head">
-                        <div>
-                            <span class="badge badge-amber">Education</span>
-                            <h3>B.Tech — Computer Science Engineering</h3>
-                            <span class="tl-org">KL University, Hyderabad</span>
-                        </div>
-                        <time>2024 – 2028</time>
-                    </div>
-                    <p class="tl-cgpa">CGPA: <strong>9.7 / 10</strong></p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- ── PROJECTS ── -->
-<section id="projects" class="section alt">
-    <div class="container">
-        <div class="sec-hdr reveal-up">
-            <span class="sec-tag">// projects</span>
-            <h2 class="sec-title">Things I've Built</h2>
-        </div>
-
-        <div class="proj-featured reveal-up">
-            <div class="pf-head">
-                <div>
-                    <span class="pf-award"><i class="fas fa-trophy"></i> 2nd Runner-Up · MongoDB Hackathon</span>
-                    <h3 class="pf-name">CompanyMind</h3>
-                    <p class="pf-sub">Semantic Search &amp; RAG Platform</p>
-                </div>
-                <div class="pf-links">
-                    <a href="https://github.com/nikhilkumarpanigrahi/Companymind" target="_blank" rel="noopener" class="pf-btn"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="https://companymind-web.onrender.com/" target="_blank" rel="noopener" class="pf-btn live"><i class="fas fa-external-link-alt"></i> Live</a>
-                </div>
-            </div>
-            <p class="pf-desc">Hybrid semantic search over 2,000+ enterprise docs using MongoDB Atlas Vector Search &amp; Reciprocal Rank Fusion. RAG pipeline with Groq Llama 3 — cached queries <strong>&lt;1ms</strong>, hybrid retrieval <strong>&lt;200ms</strong>.</p>
-            <div class="tag-row">
-                <span>FastAPI</span><span>MongoDB Atlas</span><span>Vector Search</span><span>RAG</span><span>Groq Llama 3</span><span>SSE</span>
-            </div>
-        </div>
-
-        <div class="proj-grid">
-            <div class="proj-card reveal-up" style="--delay:.1s">
-                <div class="pc-head">
-                    <h3>ASSISTLY</h3>
-                    <div class="pc-links">
-                        <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-                        <a href="https://assistly-oojv.onrender.com/" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i></a>
-                    </div>
-                </div>
-                <p class="pc-sub">Community Care Platform</p>
-                <p class="pc-desc">Full-stack app with Flask, React.js &amp; Firebase. JWT auth, RBAC for 3 roles, real-time sync, 100+ users.</p>
-                <div class="tag-row sm"><span>Flask</span><span>React.js</span><span>Firebase</span><span>JWT</span><span>RBAC</span></div>
-            </div>
-            <div class="proj-card reveal-up" style="--delay:.2s">
-                <div class="pc-head">
-                    <h3>AI Fraud Detection</h3>
-                    <div class="pc-links">
-                        <a href="https://github.com/nikhilkumarpanigrahi/AI-BASED-FRAUD-DETECTTION-SYSTEM-USING-UID-AADHAAR" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-                <p class="pc-sub">Aadhaar Identity Verification</p>
-                <p class="pc-desc">OCR + ML pipeline — 85% fraud detection accuracy across 200+ Aadhaar documents. Deployed via Flask REST API.</p>
-                <div class="tag-row sm"><span>Python</span><span>OCR</span><span>Scikit-learn</span><span>Flask</span></div>
+            <div class="loader-footer">
+                <span class="loader-mono">BACKEND &amp; DISTRIBUTED SYSTEMS</span>
+                <span class="loader-mono status-ready" id="loaderTag">[ STANDBY ]</span>
             </div>
         </div>
     </div>
-</section>
 
-<!-- ── OPEN SOURCE ── -->
-<section id="opensource" class="section">
-    <div class="container">
-        <div class="sec-hdr reveal-up">
-            <span class="sec-tag">// open source</span>
-            <h2 class="sec-title">Giving Back</h2>
-        </div>
-        <div class="oss-grid">
-            <div class="oss-card reveal-up">
-                <div class="oss-head">
-                    <div class="oss-icon green"><i class="fab fa-android"></i></div>
-                    <div>
-                        <h3>Oppia Android</h3>
-                        <span>CLAM Team · <strong>4 PRs Merged</strong></span>
-                    </div>
-                </div>
-                <p>Wrote Kotlin unit &amp; UI tests covering profile management, localization &amp; async state persistence.</p>
-                <div class="oss-prs">
-                    <a href="https://github.com/oppia/oppia-android/pull/6121" target="_blank" rel="noopener">#6121</a>
-                    <a href="https://github.com/oppia/oppia-android/pull/6144" target="_blank" rel="noopener">#6144</a>
-                    <a href="https://github.com/oppia/oppia-android/pull/6175" target="_blank" rel="noopener">#6175</a>
-                    <a href="https://github.com/oppia/oppia-android/pull/6198" target="_blank" rel="noopener">#6198</a>
-                </div>
-                <div class="tag-row sm"><span>Kotlin</span><span>Unit Tests</span><span>UI Tests</span></div>
-            </div>
-            <div class="oss-card reveal-up" style="--delay:.1s">
-                <div class="oss-head">
-                    <div class="oss-icon coral"><i class="fab fa-free-code-camp"></i></div>
-                    <div>
-                        <h3>freeCodeCamp</h3>
-                        <span>Curriculum Contributor · <strong>1 PR Merged</strong></span>
-                    </div>
-                </div>
-                <p>Added Java OOP curriculum covering classes, interfaces &amp; inheritance — live for <strong>10M+ learners</strong>.</p>
-                <div class="oss-prs">
-                    <a href="https://github.com/freeCodeCamp/freeCodeCamp/pull/63866" target="_blank" rel="noopener">#63866</a>
-                </div>
-                <div class="tag-row sm"><span>Java</span><span>OOP</span><span>Curriculum</span></div>
-            </div>
-        </div>
+    <!-- ── CUSTOM CURSOR & PROGRESS BAR ── -->
+    <div id="cursor"></div>
+    <div id="scroll-progress"></div>
+
+    <!-- ── TOAST NOTIFICATION ── -->
+    <div id="toast" class="toast" role="status" aria-live="polite">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMsg">Copied to clipboard</span>
     </div>
-</section>
 
-<!-- ── SKILLS ── -->
-<section id="skills" class="section alt">
-    <div class="container">
-        <div class="sec-hdr reveal-up">
-            <span class="sec-tag">// tech stack</span>
-            <h2 class="sec-title">What I Work With</h2>
-        </div>
-        <div class="skills-wrap">
-            <div class="sg reveal-up">
-                <span class="sg-lbl"><i class="fas fa-code"></i> Languages</span>
-                <div class="tag-row"><span>Python</span><span>Java</span><span>Kotlin</span></div>
-            </div>
-            <div class="sg reveal-up" style="--delay:.05s">
-                <span class="sg-lbl"><i class="fas fa-server"></i> Backend</span>
-                <div class="tag-row"><span>Django DRF</span><span>Flask</span><span>FastAPI</span><span>REST APIs</span><span>JWT</span><span>RBAC</span></div>
-            </div>
-            <div class="sg reveal-up" style="--delay:.1s">
-                <span class="sg-lbl"><i class="fas fa-database"></i> Databases</span>
-                <div class="tag-row"><span>PostgreSQL</span><span>MongoDB</span><span>Firebase</span><span>Vector Search</span></div>
-            </div>
-            <div class="sg reveal-up" style="--delay:.15s">
-                <span class="sg-lbl"><i class="fas fa-brain"></i> AI / ML</span>
-                <div class="tag-row"><span>RAG Pipelines</span><span>NLP Embeddings</span><span>Scikit-learn</span><span>OCR</span></div>
-            </div>
-            <div class="sg reveal-up" style="--delay:.2s">
-                <span class="sg-lbl"><i class="fas fa-palette"></i> Frontend</span>
-                <div class="tag-row"><span>React.js</span><span>Android (Kotlin)</span><span>HTML / CSS</span></div>
-            </div>
-            <div class="sg reveal-up" style="--delay:.25s">
-                <span class="sg-lbl"><i class="fas fa-tools"></i> Tools</span>
-                <div class="tag-row"><span>Git</span><span>GitHub</span><span>Postman</span></div>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- ── BACK TO TOP BUTTON ── -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-<!-- ── ACHIEVEMENTS ── -->
-<section id="achievements" class="section">
-    <div class="container">
-        <div class="sec-hdr reveal-up">
-            <span class="sec-tag">// achievements</span>
-            <h2 class="sec-title">Highlights</h2>
-        </div>
-        <div class="ach-grid">
-            <div class="ach-card reveal-up">
-                <i class="fas fa-trophy ach-ico gold"></i>
-                <h3>2nd Runner-Up</h3>
-                <p>MongoDB Smart Bridge Hack N Go Hackathon</p>
-                <a href="https://drive.google.com/file/d/1pVFm4myPBx7H6lIH82vVf37LlQvl71hl/view" target="_blank" rel="noopener">View Certificate →</a>
-            </div>
-            <div class="ach-card reveal-up" style="--delay:.08s">
-                <i class="fas fa-certificate ach-ico purple"></i>
-                <h3>MongoDB Associate Developer</h3>
-                <p>Official MongoDB certification for database &amp; Atlas expertise</p>
-                <a href="https://drive.google.com/file/d/1pdQh1szi0LW-6rZhy02oHN1D7ey7TRZJ/view" target="_blank" rel="noopener">View Certificate →</a>
-            </div>
-            <div class="ach-card reveal-up" style="--delay:.16s">
-                <i class="fas fa-robot ach-ico teal"></i>
-                <h3>AI / ML Internship</h3>
-                <p>Certified by Infosys Springboard</p>
-                <a href="https://drive.google.com/file/d/1BfNiB5rlovE9IoXqssthILGnOiPCmBqU/view" target="_blank" rel="noopener">View Certificate →</a>
-            </div>
-            <div class="ach-card reveal-up" style="--delay:.24s">
-                <i class="fas fa-code-branch ach-ico green"></i>
-                <h3>Open Source Contributor</h3>
-                <p>5 PRs merged — Oppia Android &amp; freeCodeCamp (10M+ learners)</p>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- ── HEADER / NAVIGATION ── -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-container">
+            <!-- Brand -->
+            <a href="#hero" class="brand-link">
+                <span class="brand-mono">NK /</span>
+                <span class="brand-name">Nikhil Kumar Panigrahi</span>
+            </a>
 
-<!-- ── CONTACT ── -->
-<section id="contact" class="section alt">
-    <div class="container">
-        <div class="sec-hdr reveal-up">
-            <span class="sec-tag">// contact</span>
-            <h2 class="sec-title">Get In Touch</h2>
-            <p class="sec-sub">Open to internships, full-time roles &amp; collaborations.</p>
-        </div>
-        <div class="contact-layout">
-            <div class="contact-info reveal-left">
-                <div class="cinfo-row">
-                    <i class="fas fa-envelope"></i>
-                    <span>nikhilkumarpanigrahi29@gmail.com</span>
-                    <button class="copy-btn" data-copy="nikhilkumarpanigrahi29@gmail.com" title="Copy email"><i class="fas fa-copy"></i></button>
-                </div>
-                <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener" class="cinfo-row">
-                    <i class="fab fa-github"></i><span>github.com/nikhilkumarpanigrahi</span>
-                </a>
-                <a href="https://www.linkedin.com/in/nikhilkumarpanigrahi/" target="_blank" rel="noopener" class="cinfo-row">
-                    <i class="fab fa-linkedin"></i><span>linkedin.com/in/nikhilkumarpanigrahi</span>
-                </a>
-                <div class="avail-card">
-                    <span class="avail-dot"></span>
-                    <div>
-                        <strong>Currently available</strong>
-                        <p>Full-time · Internship · Freelance</p>
-                    </div>
-                </div>
-            </div>
-            <form class="contact-form reveal-right" id="contactForm" novalidate>
-                <div class="form-row">
-                    <div class="fld">
-                        <label for="cf-name">Name <span class="req">*</span></label>
-                        <input type="text" id="cf-name" placeholder="Your Name" required>
-                        <span class="ferr" id="err-name"></span>
-                    </div>
-                    <div class="fld">
-                        <label for="cf-email">Email <span class="req">*</span></label>
-                        <input type="email" id="cf-email" placeholder="you@email.com" required>
-                        <span class="ferr" id="err-email"></span>
-                    </div>
-                </div>
-                <div class="fld">
-                    <label for="cf-subject">Subject <span class="req">*</span></label>
-                    <input type="text" id="cf-subject" placeholder="What's this about?" required>
-                    <span class="ferr" id="err-subject"></span>
-                </div>
-                <div class="fld">
-                    <label for="cf-message">Message <span class="req">*</span></label>
-                    <textarea id="cf-message" rows="4" placeholder="Your message..." required></textarea>
-                    <span class="ferr" id="err-message"></span>
-                </div>
-                <button type="submit" class="btn btn-primary btn-full" id="submitBtn">
-                    <span class="btn-txt">Send Message</span> <i class="fas fa-paper-plane"></i>
+            <!-- Desktop Nav Links -->
+            <nav class="nav-links">
+                <a href="#projects" class="nav-link">Work</a>
+                <a href="#opensource" class="nav-link">Open Source <span class="oss-count-badge">6</span></a>
+                <a href="#experience" class="nav-link">Timeline</a>
+                <a href="#skills" class="nav-link">Arsenal</a>
+                <a href="#credentials" class="nav-link">Credentials</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+
+            <!-- Actions: Theme Toggle & Resume -->
+            <div class="header-actions">
+                <button id="themeToggle" class="btn-theme-toggle" aria-label="Toggle theme" title="Switch Theme">
+                    <i class="fas fa-sun theme-icon-sun"></i>
+                    <i class="fas fa-moon theme-icon-moon"></i>
                 </button>
-            </form>
-        </div>
-    </div>
-</section>
 
-<!-- Footer -->
-<footer class="footer">
-    <div class="container footer-inner">
-        <p>Built by <strong>Nikhil Kumar Panigrahi</strong> &nbsp;·&nbsp; <span class="heart">♥</span> &nbsp;·&nbsp; &copy; 2026</p>
-        <div class="ft-socials">
-            <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/nikhilkumarpanigrahi/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:nikhilkumarpanigrahi29@gmail.com"><i class="fas fa-envelope"></i></a>
-        </div>
-    </div>
-</footer>
+                <a href="https://drive.google.com/file/d/1n5NmovJlAjthnho1TgxQ9UokmfJ4T7Zg/view?usp=sharing" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+                    <span>Resume</span>
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
 
-<script src="script.js?v=6"></script>
+                <button id="mobileMenuToggle" class="btn-mobile-menu" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#projects" class="mobile-nav-link">Work</a>
+            <a href="#opensource" class="mobile-nav-link">Open Source (6 PRs)</a>
+            <a href="#experience" class="mobile-nav-link">Timeline</a>
+            <a href="#skills" class="mobile-nav-link">Arsenal</a>
+            <a href="#credentials" class="mobile-nav-link">Credentials</a>
+            <a href="#contact" class="mobile-nav-link">Contact</a>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ── HERO SECTION ── -->
+        <section id="hero" class="hero-section">
+            <div class="container hero-grid">
+                <!-- Left: Headline & Bio -->
+                <div class="hero-content">
+                    <div class="hero-status-pill">
+                        <span class="status-pulse-dot"></span>
+                        <span class="status-text">Open Source Contributor &bull; DSA &amp; Systems</span>
+                        <span class="status-sep">/</span>
+                        <span class="status-sub">KL University (9.7 CGPA)</span>
+                    </div>
+
+                    <!-- Senior Editorial Line Reveal Headline -->
+                    <h1 class="hero-headline">
+                        <span class="line-wrap"><span class="line-inner">Designing &amp; engineering</span></span>
+                        <span class="line-wrap"><span class="line-inner">high-throughput backends,</span></span>
+                        <span class="line-wrap"><span class="line-inner em">distributed systems &amp; APIs.</span></span>
+                    </h1>
+
+                    <p class="hero-bio">
+                        I’m <strong>Nikhil Kumar Panigrahi</strong>, a Computer Science student at <strong>KL University (9.7 CGPA)</strong> focused on <strong>Open Source Software</strong>, competitive <strong>Data Structures &amp; Algorithms (DSA)</strong>, and distributed systems. With completed backend engineering experience at <strong>WhatBytes</strong> and <strong>6 merged pull requests</strong> across global organizations like <strong>Oppia Android</strong> and <strong>freeCodeCamp</strong>, I architect robust algorithmic solutions and high-throughput systems.
+                    </p>
+
+                    <!-- Primary Actions -->
+                    <div class="hero-action-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>Selected Work</span>
+                            <i class="fas fa-arrow-down"></i>
+                        </a>
+                        <a href="#opensource" class="btn btn-secondary">
+                            <i class="fas fa-code-merge"></i>
+                            <span>Open Source (6 PRs)</span>
+                        </a>
+                        <a href="https://cal.com/nikhilkumarpanigrahi" data-cal-link="nikhilkumarpanigrahi" data-cal-namespace="" target="_blank" rel="noopener" class="btn btn-secondary" title="Book a 1:1 call on Cal.com">
+                            <i class="far fa-calendar-alt"></i>
+                            <span>Book Call</span>
+                        </a>
+                        <button class="btn btn-outline copy-email-btn" data-copy="nikhilkumarpanigrahi29@gmail.com">
+                            <i class="far fa-copy"></i>
+                            <span>Copy Email</span>
+                        </button>
+                    </div>
+
+                    <!-- Social Icons Strip -->
+                    <div class="hero-social-row">
+                        <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nikhilkumarpanigrahi/" target="_blank" rel="noopener" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                        <a href="https://cal.com/nikhilkumarpanigrahi" target="_blank" rel="noopener" class="social-link" title="Cal.com">
+                            <i class="far fa-calendar-check"></i>
+                            <span>Cal.com</span>
+                        </a>
+                        <a href="mailto:nikhilkumarpanigrahi29@gmail.com" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email</span>
+                        </a>
+                        <a href="https://leetcode.com/" target="_blank" rel="noopener" class="social-link" title="LeetCode">
+                            <i class="fas fa-code"></i>
+                            <span>LeetCode</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Profile Block (Restrained, Editorial) -->
+                <div class="hero-sidebar">
+                    <div class="profile-block">
+                        <div class="profile-img-wrap">
+                            <img src="mypic.jpeg" alt="Nikhil Kumar Panigrahi" class="profile-photo">
+                        </div>
+                        <div class="profile-info">
+                            <div class="pi-row">
+                                <span class="pi-label">Primary Focus</span>
+                                <span class="pi-val">Open Source &bull; DSA &bull; Systems</span>
+                            </div>
+                            <div class="pi-row">
+                                <span class="pi-label">Experience</span>
+                                <span class="pi-val">Backend Eng &bull; WhatBytes</span>
+                            </div>
+                            <div class="pi-row">
+                                <span class="pi-label">Academics</span>
+                                <span class="pi-val">B.Tech CSE · 9.7 CGPA</span>
+                            </div>
+                            <div class="pi-row">
+                                <span class="pi-label">Open For</span>
+                                <span class="pi-val available">Software &amp; Systems Roles</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Metrics Dock -->
+            <div class="container hero-metrics-container">
+                <div class="metrics-dock">
+                    <div class="metric-card">
+                        <div class="metric-val"><span class="counter" data-target="9.7" data-decimals="1">9.7</span> <span class="metric-unit">/ 10</span></div>
+                        <div class="metric-desc">CGPA · KL University CSE</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-val"><span class="counter" data-target="6">6</span> <span class="metric-tag">Merged</span></div>
+                        <div class="metric-desc">Global OSS PRs (Oppia &amp; FCC)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-val">#<span class="counter" data-target="3">3</span> <span class="metric-tag">National</span></div>
+                        <div class="metric-desc">MongoDB Hack N Go Hackathon</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-val"><span class="counter" data-target="350">350</span><span class="metric-unit">+</span></div>
+                        <div class="metric-desc">DSA Problems Solved &bull; LeetCode</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── BRAND / AFFILIATIONS STRIP (Smooth Monospace Marquee) ── -->
+        <section class="affiliations-strip">
+            <div class="affiliations-track">
+                <div class="affil-item"><i class="fab fa-android"></i> Oppia Android (CLAM Contributor)</div>
+                <div class="affil-sep">/</div>
+                <div class="affil-item"><i class="fas fa-code"></i> DSA &amp; Algorithmic Problem Solving</div>
+                <div class="affil-sep">/</div>
+                <div class="affil-item"><i class="fas fa-database"></i> MongoDB Certified DBA</div>
+                <div class="affil-sep">/</div>
+                <div class="affil-item"><i class="fas fa-briefcase"></i> WhatBytes (Backend Engineering)</div>
+                <div class="affil-sep">/</div>
+                <div class="affil-item"><i class="fas fa-robot"></i> Automation Anywhere GC</div>
+                <div class="affil-sep">/</div>
+                <div class="affil-item"><i class="fab fa-free-code-camp"></i> freeCodeCamp (Curriculum)</div>
+                <div class="affil-sep">/</div>
+                <div class="affil-item"><i class="fas fa-leaf"></i> MongoDB Atlas (National Hackathon #3)</div>
+                <div class="affil-sep">/</div>
+                <div class="affil-item"><i class="fas fa-shield-halved"></i> Polygon Blockchain (ProofFace)</div>
+                <div class="affil-sep">/</div>
+                <div class="affil-item"><i class="fas fa-code-branch"></i> 6 Merged Pull Requests</div>
+                <div class="affil-sep">/</div>
+                <div class="affil-item"><i class="fas fa-graduation-cap"></i> KL University (9.7 CGPA)</div>
+                <div class="affil-sep">/</div>
+            </div>
+        </section>
+
+        <!-- ── FEATURED PROJECTS (Editorial 3D Tilt List) ── -->
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-eyebrow">
+                        <span class="section-line"></span>
+                        <span class="section-tag">SELECTED SYSTEMS &amp; ARCHITECTURE</span>
+                    </div>
+                    <h2 class="section-title">Production Engineering Projects</h2>
+                    <p class="section-desc">Verifiable cryptographic engines, hybrid semantic vector search platforms, and high-concurrency systems.</p>
+                </div>
+
+                <!-- Editorial Project List -->
+                <div class="project-list" data-reveal>
+
+                    <!-- PROJECT 01: PROOFFACE -->
+                    <article class="project-item">
+                        <div class="pi-left">
+                            <span class="pi-num">01 / 04</span>
+                        </div>
+
+                        <div class="pi-main">
+                            <div class="pi-title-row">
+                                <h3 class="pi-name">ProofFace</h3>
+                                <span class="pi-badge flagship">Flagship</span>
+                                <span class="pi-badge">Rust Engine</span>
+                            </div>
+                            <p class="pi-tagline">End-to-End Cryptographic Visual Provenance &amp; Face Integrity Engine</p>
+                            <p class="pi-desc">
+                                Engineered a production 7-stage verifiable provenance pipeline that cryptographically attests face authenticity and tamper-evidence on the Polygon blockchain. Rejects synthetic spoofing via an ISO/IEC 30107 compliant chrominance skin-ratio filter (&ge;18%), runs neural face detection, canonicalizes metadata deterministically via RFC 8785 (JCS), and anchors Keccak-256 state proofs to an on-chain Polygon Amoy smart contract.
+                            </p>
+
+                            <div class="pi-specs">
+                                <div class="pi-spec">
+                                    <span class="pi-spec-title">Pure Rust Core</span>
+                                    <span class="pi-spec-detail">Zero-overhead, 100% safe memory</span>
+                                </div>
+                                <div class="pi-spec">
+                                    <span class="pi-spec-title">Polygon Amoy</span>
+                                    <span class="pi-spec-detail">Verified: <code>0x647a...3170</code></span>
+                                </div>
+                                <div class="pi-spec">
+                                    <span class="pi-spec-title">RFC-8785 (JCS)</span>
+                                    <span class="pi-spec-detail">Deterministic JSON hashing</span>
+                                </div>
+                                <div class="pi-spec">
+                                    <span class="pi-spec-title">30 Unit &amp; E2E</span>
+                                    <span class="pi-spec-detail">100% test pass verification</span>
+                                </div>
+                            </div>
+
+                            <div class="pi-stack">
+                                Rust · Polygon EVM · Smart Contracts · Keccak-256 · RFC-8785 · ISO/IEC 30107
+                            </div>
+                        </div>
+
+                        <div class="pi-right">
+                            <a href="https://github.com/nikhilkumarpanigrahi/proofFace" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+                                <i class="fab fa-github"></i> <span>Repository</span>
+                            </a>
+                            <a href="https://amoy.polygonscan.com/address/0x647a132b73b19fcbbc19d789a2af25238afa3170" target="_blank" rel="noopener" class="btn btn-sm btn-accent">
+                                <i class="fas fa-cube"></i> <span>Contract</span> <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT 02: COMPANYMIND -->
+                    <article class="project-item">
+                        <div class="pi-left">
+                            <span class="pi-num">02 / 04</span>
+                        </div>
+
+                        <div class="pi-main">
+                            <div class="pi-title-row">
+                                <h3 class="pi-name">CompanyMind</h3>
+                                <span class="pi-badge award"><i class="fas fa-trophy"></i> Top 3 National</span>
+                                <span class="pi-badge">Enterprise RAG</span>
+                            </div>
+                            <p class="pi-tagline">Hybrid Semantic Search &amp; Enterprise Knowledge Intelligence Platform</p>
+                            <p class="pi-desc">
+                                Enterprise knowledge search and question-answering platform indexing 2,000+ internal documents. Combines dense vector search (MongoDB Atlas) with full-text keyword indexing via Reciprocal Rank Fusion (RRF). Integrated a low-latency RAG pipeline using Groq-accelerated Llama 3 with streaming Server-Sent Events (SSE). Awarded 2nd Runner-Up at MongoDB National Hackathon.
+                            </p>
+
+                            <div class="pi-specs">
+                                <div class="pi-spec">
+                                    <span class="pi-spec-title">&lt; 1ms Latency</span>
+                                    <span class="pi-spec-detail">In-memory cached queries</span>
+                                </div>
+                                <div class="pi-spec">
+                                    <span class="pi-spec-title">&lt; 200ms Retrieval</span>
+                                    <span class="pi-spec-detail">Hybrid dense + sparse search</span>
+                                </div>
+                                <div class="pi-spec">
+                                    <span class="pi-spec-title">2,000+ Docs</span>
+                                    <span class="pi-spec-detail">Chunked and vector embedded</span>
+                                </div>
+                                <div class="pi-spec">
+                                    <span class="pi-spec-title">Groq Llama 3</span>
+                                    <span class="pi-spec-detail">Low-latency SSE streaming</span>
+                                </div>
+                            </div>
+
+                            <div class="pi-stack">
+                                FastAPI · MongoDB Atlas · Vector Search · Groq Llama 3 · RAG · RRF Reranking · Python
+                            </div>
+                        </div>
+
+                        <div class="pi-right">
+                            <a href="https://github.com/nikhilkumarpanigrahi/Companymind" target="_blank" rel="noopener" class="btn btn-sm btn-outline">
+                                <i class="fab fa-github"></i> <span>Repository</span>
+                            </a>
+                            <a href="https://companymind-web.onrender.com/" target="_blank" rel="noopener" class="btn btn-sm btn-primary">
+                                <span>Live Demo</span> <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+
+                <!-- 2-COLUMN SUBGRID: COMPACT PROJECTS -->
+                <div class="projects-subgrid" style="margin-top: 24px;" data-stagger>
+                    <!-- Project 3: Assistly -->
+                    <div class="project-card-compact">
+                        <div class="compact-header">
+                            <span class="card-badge-num">PROJECT 03</span>
+                            <div class="compact-links">
+                                <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener" class="icon-link" title="GitHub"><i class="fab fa-github"></i></a>
+                                <a href="https://assistly-oojv.onrender.com/" target="_blank" rel="noopener" class="icon-link" title="Live Demo"><i class="fas fa-arrow-up-right-from-square"></i></a>
+                            </div>
+                        </div>
+                        <h4 class="compact-title">Assistly</h4>
+                        <p class="compact-subtitle">Community Care &amp; Volunteer Coordination System</p>
+                        <p class="compact-text">
+                            Full-stack application for automated request management and volunteer routing. Features stateless JWT authentication, 3-tier Role-Based Access Control (RBAC), and Firestore real-time synchronization, actively serving 100+ users.
+                        </p>
+                        <div class="tech-tag-row">
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Firestore</span>
+                            <span class="tech-tag">JWT</span>
+                            <span class="tech-tag">RBAC</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Aadhaar Fraud Detection -->
+                    <div class="project-card-compact">
+                        <div class="compact-header">
+                            <span class="card-badge-num">PROJECT 04</span>
+                            <div class="compact-links">
+                                <a href="https://github.com/nikhilkumarpanigrahi/AI-BASED-FRAUD-DETECTTION-SYSTEM-USING-UID-AADHAAR" target="_blank" rel="noopener" class="icon-link" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h4 class="compact-title">Aadhaar Tamper Screening</h4>
+                        <p class="compact-subtitle">Automated Document Verification &amp; Anomaly Detection</p>
+                        <p class="compact-text">
+                            End-to-end OCR and anomaly detection pipeline developed during Infosys Springboard internship. Evaluated against 200+ identity cards, demonstrating 85% verified classification accuracy and reducing manual review queues by 60%.
+                        </p>
+                        <div class="tech-tag-row">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Tesseract OCR</span>
+                            <span class="tech-tag">Scikit-learn</span>
+                            <span class="tech-tag">Flask REST</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── OPEN SOURCE CONTRIBUTIONS (Refined Ledger) ── -->
+        <section id="opensource" class="section section-alt">
+            <div class="container">
+                <div class="section-header-split">
+                    <div>
+                        <div class="section-eyebrow">
+                            <span class="section-line"></span>
+                            <span class="section-tag">GLOBAL PRODUCTION CONTRIBUTIONS</span>
+                        </div>
+                        <h2 class="section-title">Open Source Contributions</h2>
+                        <p class="section-desc">6 verified pull requests merged into core production repositories of international organizations.</p>
+                    </div>
+                    <div class="oss-stat-counter">
+                        <span class="oss-stat-num">6</span>
+                        <span class="oss-stat-label">Merged PRs<br>Total</span>
+                    </div>
+                </div>
+
+                <!-- Clean Pull Request Ledger -->
+                <div class="pr-ledger">
+                    <!-- PR 1: Oppia #6454 (NEWEST) -->
+                    <div class="pr-ledger-row pr-newest">
+                        <div class="col-pr-id">
+                            <span class="pr-hash">#6454</span>
+                            <span class="badge-new">LATEST</span>
+                        </div>
+                        <div class="col-pr-repo">
+                            <span class="repo-tag"><i class="fab fa-android"></i> oppia/oppia-android</span>
+                        </div>
+                        <div class="col-pr-details">
+                            <div class="pr-title">Fix #6312: Add test coverage for audio language selection and unavailable notice</div>
+                            <div class="pr-meta-pills">
+                                <span>Kotlin</span>
+                                <span>Robolectric</span>
+                                <span>Audio Controller</span>
+                                <span>98% Coverage</span>
+                            </div>
+                        </div>
+                        <div class="col-pr-status">
+                            <span class="badge-merged"><i class="fas fa-check"></i> Merged</span>
+                        </div>
+                        <div class="col-pr-action">
+                            <a href="https://github.com/oppia/oppia-android/pull/6454" target="_blank" rel="noopener" class="btn-icon" title="View on GitHub">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PR 2: Oppia #6198 -->
+                    <div class="pr-ledger-row">
+                        <div class="col-pr-id">
+                            <span class="pr-hash">#6198</span>
+                        </div>
+                        <div class="col-pr-repo">
+                            <span class="repo-tag"><i class="fab fa-android"></i> oppia/oppia-android</span>
+                        </div>
+                        <div class="col-pr-details">
+                            <div class="pr-title">Fixes #5039: Force LTR alignment for Terms of Service &amp; Privacy Policy in RTL languages</div>
+                            <div class="pr-meta-pills">
+                                <span>Kotlin</span>
+                                <span>RTL Layouts</span>
+                                <span>Localization</span>
+                            </div>
+                        </div>
+                        <div class="col-pr-status">
+                            <span class="badge-merged"><i class="fas fa-check"></i> Merged</span>
+                        </div>
+                        <div class="col-pr-action">
+                            <a href="https://github.com/oppia/oppia-android/pull/6198" target="_blank" rel="noopener" class="btn-icon" title="View on GitHub">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PR 3: Oppia #6175 -->
+                    <div class="pr-ledger-row">
+                        <div class="col-pr-id">
+                            <span class="pr-hash">#6175</span>
+                        </div>
+                        <div class="col-pr-repo">
+                            <span class="repo-tag"><i class="fab fa-android"></i> oppia/oppia-android</span>
+                        </div>
+                        <div class="col-pr-details">
+                            <div class="pr-title">Fixes #4236: Add remaining unit tests for AsyncResultSubject</div>
+                            <div class="pr-meta-pills">
+                                <span>Kotlin</span>
+                                <span>Async Testing</span>
+                                <span>State Persistence</span>
+                            </div>
+                        </div>
+                        <div class="col-pr-status">
+                            <span class="badge-merged"><i class="fas fa-check"></i> Merged</span>
+                        </div>
+                        <div class="col-pr-action">
+                            <a href="https://github.com/oppia/oppia-android/pull/6175" target="_blank" rel="noopener" class="btn-icon" title="View on GitHub">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PR 4: Oppia #6144 -->
+                    <div class="pr-ledger-row">
+                        <div class="col-pr-id">
+                            <span class="pr-hash">#6144</span>
+                        </div>
+                        <div class="col-pr-repo">
+                            <span class="repo-tag"><i class="fab fa-android"></i> oppia/oppia-android</span>
+                        </div>
+                        <div class="col-pr-details">
+                            <div class="pr-title">Fixes #6086: Add transparent image detection and math tag validation</div>
+                            <div class="pr-meta-pills">
+                                <span>Kotlin</span>
+                                <span>Image Validation</span>
+                                <span>Regex Parser</span>
+                            </div>
+                        </div>
+                        <div class="col-pr-status">
+                            <span class="badge-merged"><i class="fas fa-check"></i> Merged</span>
+                        </div>
+                        <div class="col-pr-action">
+                            <a href="https://github.com/oppia/oppia-android/pull/6144" target="_blank" rel="noopener" class="btn-icon" title="View on GitHub">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PR 5: Oppia #6121 -->
+                    <div class="pr-ledger-row">
+                        <div class="col-pr-id">
+                            <span class="pr-hash">#6121</span>
+                        </div>
+                        <div class="col-pr-repo">
+                            <span class="repo-tag"><i class="fab fa-android"></i> oppia/oppia-android</span>
+                        </div>
+                        <div class="col-pr-details">
+                            <div class="pr-title">Fix part of #5035: Add missing deleteAllProfiles tests for ProfileManagementController</div>
+                            <div class="pr-meta-pills">
+                                <span>Kotlin</span>
+                                <span>Database Cleanup</span>
+                                <span>Unit Suite</span>
+                            </div>
+                        </div>
+                        <div class="col-pr-status">
+                            <span class="badge-merged"><i class="fas fa-check"></i> Merged</span>
+                        </div>
+                        <div class="col-pr-action">
+                            <a href="https://github.com/oppia/oppia-android/pull/6121" target="_blank" rel="noopener" class="btn-icon" title="View on GitHub">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- PR 6: freeCodeCamp #63866 -->
+                    <div class="pr-ledger-row">
+                        <div class="col-pr-id">
+                            <span class="pr-hash">#63866</span>
+                        </div>
+                        <div class="col-pr-repo">
+                            <span class="repo-tag fcc"><i class="fab fa-free-code-camp"></i> freeCodeCamp</span>
+                        </div>
+                        <div class="col-pr-details">
+                            <div class="pr-title">feat(curriculum): add interactive editors to class inheritance lesson</div>
+                            <div class="pr-meta-pills">
+                                <span>Java</span>
+                                <span>OOP Architecture</span>
+                                <span>Curriculum</span>
+                            </div>
+                        </div>
+                        <div class="col-pr-status">
+                            <span class="badge-merged"><i class="fas fa-check"></i> Merged</span>
+                        </div>
+                        <div class="col-pr-action">
+                            <a href="https://github.com/freeCodeCamp/freeCodeCamp/pull/63866" target="_blank" rel="noopener" class="btn-icon" title="View on GitHub">
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── WORK EXPERIENCE & EDUCATION ── -->
+        <section id="experience" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-eyebrow">
+                        <span class="section-line"></span>
+                        <span class="section-tag">CAREER PATH &amp; ACADEMICS</span>
+                    </div>
+                    <h2 class="section-title">Experience &amp; Education</h2>
+                    <p class="section-desc">Practical engineering milestones in SaaS development alongside rigorous computer science academics.</p>
+                </div>
+
+                <div class="experience-grid">
+                    <!-- Left: Professional Work -->
+                    <div class="exp-column">
+                        <h3 class="column-heading"><i class="fas fa-briefcase"></i> Work Experience</h3>
+                        
+                        <div class="timeline-stack">
+                            <!-- Role 1: WhatBytes -->
+                            <div class="timeline-card">
+                                <div class="timeline-top">
+                                    <div>
+                                        <span class="role-badge" style="background: rgba(139,159,232,0.1); color: var(--a); border-color: rgba(139,159,232,0.2);">Internship</span>
+                                        <h4 class="role-title">Backend Developer Intern</h4>
+                                        <div class="company-name">WhatBytes</div>
+                                    </div>
+                                    <span class="time-period">Jun 2026 – Sep 2026</span>
+                                </div>
+                                <ul class="bullet-list">
+                                    <li>Engineered production REST endpoints with <strong>Django REST Framework (DRF)</strong> and <strong>PostgreSQL</strong> for a high-availability B2B SaaS platform.</li>
+                                    <li>Designed normalized relational schemas, query optimizations, and index tuning to maintain sub-100ms endpoint response times.</li>
+                                </ul>
+                                <div class="tech-tag-row">
+                                    <span class="tech-tag">Django DRF</span>
+                                    <span class="tech-tag">PostgreSQL</span>
+                                    <span class="tech-tag">REST APIs</span>
+                                    <span class="tech-tag">Python</span>
+                                </div>
+                            </div>
+
+                            <!-- Role 2: Infosys Springboard -->
+                            <div class="timeline-card">
+                                <div class="timeline-top">
+                                    <div>
+                                        <h4 class="role-title">AI / ML Virtual Intern</h4>
+                                        <div class="company-name">Infosys Springboard</div>
+                                    </div>
+                                    <span class="time-period">Sep – Nov 2025</span>
+                                </div>
+                                <ul class="bullet-list">
+                                    <li>Constructed an OCR + ML pipeline for Aadhaar document verification, achieving <strong>85% accuracy</strong> and reducing manual queues by <strong>60%</strong>.</li>
+                                    <li>Packaged inference models into lightweight stateless Flask microservices.</li>
+                                </ul>
+                                <div class="tech-tag-row">
+                                    <span class="tech-tag">Python</span>
+                                    <span class="tech-tag">Scikit-learn</span>
+                                    <span class="tech-tag">Tesseract OCR</span>
+                                    <span class="tech-tag">Flask</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Academic Foundations -->
+                    <div class="exp-column">
+                        <h3 class="column-heading"><i class="fas fa-graduation-cap"></i> Academic Foundations</h3>
+
+                        <div class="timeline-stack">
+                            <!-- KL University -->
+                            <div class="timeline-card academic-card">
+                                <div class="timeline-top">
+                                    <div>
+                                        <span class="role-badge">Degree Program</span>
+                                        <h4 class="role-title">B.Tech in Computer Science &amp; Engineering</h4>
+                                        <div class="company-name">KL University, Hyderabad</div>
+                                    </div>
+                                    <span class="time-period">2024 – 2028</span>
+                                </div>
+
+                                <div class="cgpa-highlight-box">
+                                    <div class="cgpa-figure">9.7 <span class="cgpa-denom">/ 10</span></div>
+                                    <div class="cgpa-info">
+                                        <strong>Cumulative Grade Point Average</strong>
+                                        <p>Top academic tier across core systems programming and algorithms curriculum.</p>
+                                    </div>
+                                </div>
+
+                                <div class="coursework-block">
+                                    <span class="cw-heading">Core Coursework:</span>
+                                    <div class="cw-tags">
+                                        <span>Data Structures &amp; Algorithms</span>
+                                        <span>Database Management Systems</span>
+                                        <span>Operating Systems</span>
+                                        <span>Computer Networks</span>
+                                        <span>Object-Oriented Design</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── TECHNICAL ARSENAL (Clean Editorial Skills Table) ── -->
+        <section id="skills" class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-eyebrow">
+                        <span class="section-line"></span>
+                        <span class="section-tag">COMPETENCIES &amp; STACK</span>
+                    </div>
+                    <h2 class="section-title">Technical Arsenal</h2>
+                    <p class="section-desc">Technologies, protocols, and architectural patterns I use to construct resilient systems.</p>
+                </div>
+
+                <div class="skills-table">
+                    <!-- DSA & Algorithms -->
+                    <div class="skills-row">
+                        <span class="skill-cat">Algorithms &amp; DSA</span>
+                        <div class="skill-tags">
+                            <span class="skill-pill primary">Data Structures &amp; Algorithms</span>
+                            <span class="skill-pill primary">Problem Solving (LeetCode 350+)</span>
+                            <span class="skill-pill primary">Time &amp; Space Optimization</span>
+                            <span class="skill-pill">Graph Algorithms</span>
+                            <span class="skill-pill">Trees &amp; Binary Search</span>
+                            <span class="skill-pill">Dynamic Programming</span>
+                            <span class="skill-pill">Bit Manipulation</span>
+                        </div>
+                    </div>
+
+                    <!-- Languages -->
+                    <div class="skills-row">
+                        <span class="skill-cat">Languages</span>
+                        <div class="skill-tags">
+                            <span class="skill-pill primary">Rust</span>
+                            <span class="skill-pill primary">Python</span>
+                            <span class="skill-pill primary">Java</span>
+                            <span class="skill-pill primary">Kotlin</span>
+                            <span class="skill-pill">SQL (PostgreSQL)</span>
+                            <span class="skill-pill">C / C++</span>
+                            <span class="skill-pill">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <!-- Backend & Systems -->
+                    <div class="skills-row">
+                        <span class="skill-cat">Backend &amp; APIs</span>
+                        <div class="skill-tags">
+                            <span class="skill-pill primary">Django REST Framework</span>
+                            <span class="skill-pill primary">FastAPI</span>
+                            <span class="skill-pill">Flask</span>
+                            <span class="skill-pill">Microservices Architecture</span>
+                            <span class="skill-pill">RESTful API Design</span>
+                            <span class="skill-pill">JWT &amp; RBAC Auth</span>
+                            <span class="skill-pill">Server-Sent Events (SSE)</span>
+                        </div>
+                    </div>
+
+                    <!-- Storage & Search -->
+                    <div class="skills-row">
+                        <span class="skill-cat">Data &amp; Retrieval</span>
+                        <div class="skill-tags">
+                            <span class="skill-pill primary">PostgreSQL</span>
+                            <span class="skill-pill primary">MongoDB Atlas</span>
+                            <span class="skill-pill">Vector Search &amp; Embeddings</span>
+                            <span class="skill-pill">Reciprocal Rank Fusion (RRF)</span>
+                            <span class="skill-pill">Cloud Firestore</span>
+                            <span class="skill-pill">Query Tuning &amp; Indexing</span>
+                        </div>
+                    </div>
+
+                    <!-- Cryptography & Verification -->
+                    <div class="skills-row">
+                        <span class="skill-cat">Crypto &amp; Protocols</span>
+                        <div class="skill-tags">
+                            <span class="skill-pill primary">RFC-8785 (JCS Canonicalization)</span>
+                            <span class="skill-pill primary">Polygon EVM</span>
+                            <span class="skill-pill">Smart Contracts (Solidity)</span>
+                            <span class="skill-pill">Keccak-256 Digesting</span>
+                            <span class="skill-pill">ISO/IEC 30107 Compliance</span>
+                        </div>
+                    </div>
+
+                    <!-- Testing & Infrastructure -->
+                    <div class="skills-row">
+                        <span class="skill-cat">Testing &amp; DevOps</span>
+                        <div class="skill-tags">
+                            <span class="skill-pill primary">Git &amp; GitHub Actions</span>
+                            <span class="skill-pill">Robolectric (Android)</span>
+                            <span class="skill-pill">Pytest &amp; Unit Testing</span>
+                            <span class="skill-pill">Docker Containers</span>
+                            <span class="skill-pill">Linux Systems</span>
+                            <span class="skill-pill">Postman / Insomnia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CERTIFICATIONS & RECOGNITION ── -->
+        <section id="credentials" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-eyebrow">
+                        <span class="section-line"></span>
+                        <span class="section-tag">VERIFIED CREDENTIALS</span>
+                    </div>
+                    <h2 class="section-title">Certifications &amp; Recognition</h2>
+                    <p class="section-desc">Formal third-party verification of engineering capability and competitive hackathon placement.</p>
+                </div>
+
+                <div class="credentials-grid" data-stagger>
+                    <!-- 1. MongoDB Associate Developer -->
+                    <div class="cred-card">
+                        <div class="cred-icon award-green"><i class="fas fa-database"></i></div>
+                        <span class="cred-type">Database Certification</span>
+                        <h3 class="cred-title">MongoDB Associate Developer</h3>
+                        <p class="cred-org">Official MongoDB Certification in NoSQL Modeling, Query Optimization &amp; Atlas</p>
+                        <a href="https://drive.google.com/file/d/1pdQh1szi0LW-6rZhy02oHN1D7ey7TRZJ/view" target="_blank" rel="noopener" class="cred-link">
+                            <span>View Certificate</span> <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+
+                    <!-- 2. MongoDB Associate DBA (NEW) -->
+                    <div class="cred-card">
+                        <div class="cred-icon award-teal"><i class="fas fa-server"></i></div>
+                        <span class="cred-type">Systems &amp; Operations</span>
+                        <h3 class="cred-title">MongoDB Associate DBA</h3>
+                        <p class="cred-org">Official MongoDB Certification in Database Administration, Scaling, Security &amp; Indexing</p>
+                        <a href="https://drive.google.com/file/d/1wy2cPwhbAVTysfMbwtin1QRxiNphnnaJ/view?usp=sharing" target="_blank" rel="noopener" class="cred-link">
+                            <span>View Certificate</span> <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+
+                    <!-- 3. National Hackathon 2nd Runner-Up -->
+                    <div class="cred-card">
+                        <div class="cred-icon award-gold"><i class="fas fa-trophy"></i></div>
+                        <span class="cred-type">Hackathon Award</span>
+                        <h3 class="cred-title">2nd Runner-Up (National)</h3>
+                        <p class="cred-org">MongoDB Smart Bridge Hack N Go National Hackathon (CompanyMind Platform)</p>
+                        <a href="https://drive.google.com/file/d/1pVFm4myPBx7H6lIH82vVf37LlQvl71hl/view" target="_blank" rel="noopener" class="cred-link">
+                            <span>View Certificate</span> <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+
+                    <!-- 4. Automation Anywhere GC (NEW) -->
+                    <div class="cred-card">
+                        <div class="cred-icon award-purple"><i class="fas fa-robot"></i></div>
+                        <span class="cred-type">Process Automation</span>
+                        <h3 class="cred-title">Automation Anywhere GC</h3>
+                        <p class="cred-org">Certified Advanced RPA &amp; Intelligent Automation Global Certification</p>
+                        <a href="https://drive.google.com/file/d/1XfYPtexhfRyKFDyyLv63wuOsGJHYsDuX/view?usp=sharing" target="_blank" rel="noopener" class="cred-link">
+                            <span>View Certificate</span> <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+
+                    <!-- 5. AI/ML Specialist -->
+                    <div class="cred-card">
+                        <div class="cred-icon award-indigo"><i class="fas fa-microchip"></i></div>
+                        <span class="cred-type">Specialization</span>
+                        <h3 class="cred-title">AI / ML Specialist</h3>
+                        <p class="cred-org">Infosys Springboard Verified Machine Learning &amp; Document Classification Pipelines</p>
+                        <a href="https://drive.google.com/file/d/1BfNiB5rlovE9IoXqssthILGnOiPCmBqU/view" target="_blank" rel="noopener" class="cred-link">
+                            <span>View Certificate</span> <i class="fas fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+
+                    <!-- 6. Open Source Contributions -->
+                    <div class="cred-card">
+                        <div class="cred-icon award-blue"><i class="fas fa-code-branch"></i></div>
+                        <span class="cred-type">Open Source Track</span>
+                        <h3 class="cred-title">6 Merged Pull Requests</h3>
+                        <p class="cred-org">Oppia Android (CLAM Contributor) &amp; freeCodeCamp Global Production Codebases</p>
+                        <a href="#opensource" class="cred-link">
+                            <span>Review PR Ledger</span> <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── CONTACT SECTION ── -->
+        <section id="contact" class="section section-alt">
+            <div class="container">
+                <div class="contact-card">
+                    <div class="contact-info">
+                        <div class="section-eyebrow">
+                            <span class="section-line"></span>
+                            <span class="section-tag">INITIATE CONTACT</span>
+                        </div>
+                        <h2 class="contact-heading">Let's build something exceptional together.</h2>
+                        <p class="contact-lead">
+                            I am actively seeking backend, distributed systems, and software engineering opportunities. Reach out directly or book a meeting below.
+                        </p>
+
+                        <div class="contact-methods">
+                            <div class="method-card">
+                                <i class="far fa-calendar-check"></i>
+                                <div>
+                                    <span class="method-lbl">Book a 1:1 Call (Cal.com)</span>
+                                    <a href="https://cal.com/nikhilkumarpanigrahi" data-cal-link="nikhilkumarpanigrahi" data-cal-namespace="" target="_blank" rel="noopener" class="method-val">cal.com/nikhilkumarpanigrahi</a>
+                                </div>
+                            </div>
+
+                            <div class="method-card">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <span class="method-lbl">Direct Email</span>
+                                    <a href="mailto:nikhilkumarpanigrahi29@gmail.com" class="method-val">nikhilkumarpanigrahi29@gmail.com</a>
+                                </div>
+                            </div>
+
+                            <div class="method-card">
+                                <i class="fab fa-linkedin-in"></i>
+                                <div>
+                                    <span class="method-lbl">LinkedIn</span>
+                                    <a href="https://www.linkedin.com/in/nikhilkumarpanigrahi/" target="_blank" rel="noopener" class="method-val">nikhilkumarpanigrahi</a>
+                                </div>
+                            </div>
+
+                            <div class="method-card">
+                                <i class="fab fa-github"></i>
+                                <div>
+                                    <span class="method-lbl">GitHub</span>
+                                    <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener" class="method-val">nikhilkumarpanigrahi</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <form id="contactForm" action="https://formsubmit.co/ajax/nikhilkumarpanigrahi29@gmail.com" method="POST">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_subject" value="New Portfolio Message">
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="name">Your Name</label>
+                                    <input type="text" id="name" name="name" placeholder="Sarah Connor" required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="email">Your Email</label>
+                                    <input type="email" id="email" name="email" placeholder="sarah@example.com" required>
+                                </div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="Backend Engineer Role / Collaboration" required>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Hi Nikhil, we'd like to discuss our backend systems..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-left">
+                <span class="footer-name">Nikhil Kumar Panigrahi</span>
+                <span class="footer-sep">·</span>
+                <span class="footer-copy">&copy; 2026 Crafted with precision.</span>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/nikhilkumarpanigrahi" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/nikhilkumarpanigrahi/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://cal.com/nikhilkumarpanigrahi" target="_blank" rel="noopener">Cal.com</a>
+                <a href="mailto:nikhilkumarpanigrahi29@gmail.com">Email</a>
+                <a href="https://leetcode.com/" target="_blank" rel="noopener">LeetCode</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cal.com Embed JS -->
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", {origin:"https://cal.com"});
+      Cal("ui", {"styles":{"branding":{"brandColor":"#8b9fe8"}},"hideEventTypeDetails":false,"layout":"month_view"});
+    </script>
+
+    <script src="script.js?v=senior1"></script>
 </body>
 </html>

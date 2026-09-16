@@ -1,4 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 36" width="80" height="36">
-  <text x="4" y="28" font-family="Georgia, serif" font-size="28" font-weight="700" fill="#1A1A2E" letter-spacing="2">NK</text>
-  <line x1="4" y1="33" x2="76" y2="33" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="nkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+  </defs>
+  <text x="4" y="27" font-family="'Space Grotesk', sans-serif" font-size="26" font-weight="700" fill="url(#nkGrad)" letter-spacing="1.5">NK</text>
+  <line x1="4" y1="32" x2="64" y2="32" stroke="url(#lineGrad)" stroke-width="2.5" stroke-linecap="round"/>
 </svg>
